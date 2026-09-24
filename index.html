@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Digital</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f5e6d3, #e8d5c4);
+      color: #4a3f35;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    h1 { font-size: 1.8rem; margin-bottom: 10px; color: #8b5e3c; }
+    .nama { font-size: 2.2rem; font-weight: bold; margin: 15px 0; color: #5c4033; }
+    .tanggal { font-size: 1.3rem; margin: 20px 0; color: #8b5e3c; }
+    .lokasi { margin: 15px 0; line-height: 1.6; }
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 30px;
+      background: #8b5e3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 1rem;
+    }
+    .btn:hover { background: #6d4a2f; }
+    .countdown { margin: 25px 0; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p>Dengan hormat mengundang</p>
+    <h1>Pernikahan</h1>
+    <div class="nama">Ayu & Budi</div>
+    <div class="tanggal">Sabtu, 15 November 2025</div>
+    <div class="lokasi">
+      Gedung Serbaguna<br>
+      Jl. Merdeka No. 123, Jakarta
+    </div>
+    
+    <div class="countdown" id="countdown"></div>
+    
+    <a href="https://maps.google.com" class="btn" target="_blank">Lihat Lokasi</a>
+  </div>
+
+  <script>
+    // Hitung mundur (ganti tanggal sesuai acara)
+    const target = new Date("Nov 15, 2025 10:00:00").getTime();
+    
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = target - now;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById("countdown").innerHTML = 
+        days + " hari " + hours + " jam " + minutes + " menit " + seconds + " detik";
+    }, 1000);
+  </script>
+</body>
+</html>
