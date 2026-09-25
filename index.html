@@ -60,9 +60,9 @@
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
         .section-card { margin: 40px 14px; border-radius: 20px; padding: 30px 18px; background: rgba(18,18,18,0.80); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 0 1px rgba(217,119,6,0.3); color: #fff; }
 
-        /* HERO (KARTU 1 - DIPASTIKAN BERSIH TANPA KOTAK HITAM) */
+        /* HERO (KARTU 1 - POSISI DI BAWAH) */
         .sec-hero-wrapper {
-            padding-top: 45vh;
+            padding-top: 55vh;
             padding-bottom: 20px;
         }
         .sec-hero.section-card { 
@@ -113,13 +113,15 @@
         .badge-hadir { background: #10b981; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .badge-tidak { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; margin-bottom: 40px; }
-        .timeline { position: relative; padding-left: 18px; margin-top: 14px; }
-        .timeline::before { content: ''; position: absolute; left: 4px; top: 0; bottom: 0; width: 2px; background: #d97706; }
-        .timeline-item { position: relative; margin-bottom: 16px; }
-        .timeline-item::before { content: ''; position: absolute; left: -16px; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: #d97706; border: 2px solid #fff; }
-        .timeline-date { font-size: 0.72rem; color: #fef3c7; font-weight: 600; }
-        .timeline-title { font-size: 0.92rem; color: #fff; margin: 2px 0; }
-        .timeline-desc { font-size: 0.78rem; color: #e7d8c9; }
+        
+        /* LOVE STORY - STYLE KARTU BERDERET (STACK) */
+        .story-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+        .story-card-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(217,119,6,0.3); border-radius: 12px; padding: 14px 16px; text-align: left; position: relative; }
+        .story-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        .story-year { font-size: 0.75rem; color: #fef3c7; font-weight: 700; background: rgba(217,119,6,0.25); padding: 2px 8px; border-radius: 20px; border: 1px solid rgba(217,119,6,0.4); }
+        .story-card-title { font-size: 0.95rem; color: #fff; font-weight: 600; }
+        .story-card-desc { font-size: 0.8rem; color: #e7d8c9; }
+
         .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
         .gallery-item { aspect-ratio: 1; border-radius: 10px; overflow: hidden; border: 1px solid rgba(217,119,6,0.35); cursor: pointer; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
@@ -143,7 +145,7 @@
 </head>
 <body>
 
-    <!-- AUDIO BACKGROUND DENGAN PRELOAD AUTO -->
+    <!-- AUDIO BACKGROUND -->
     <audio id="bgMusic" preload="auto" loop>
         <source src="https://files.catbox.moe/uhe8se.mp3" type="audio/mpeg">
     </audio>
@@ -179,7 +181,7 @@
     <!-- KONTEN UTAMA -->
     <div id="mainContent" class="main-container hide">
 
-        <!-- HERO (KARTU 1 - TANPA KOTAK HITAM) -->
+        <!-- HERO (KARTU 1 - POSISI DI BAWAH) -->
         <div class="sec-hero-wrapper">
             <section class="section-card sec-hero fade-up">
                 <p style="color:#fef3c7; font-size:0.9rem; letter-spacing:1.5px;">The Wedding of</p>
@@ -220,30 +222,39 @@
             </div>
         </section>
 
-        <!-- LOVE STORY (KARTU 4) -->
+        <!-- LOVE STORY (KARTU 4 - GAYA KARTU STACK) -->
         <section class="section-card fade-up">
             <h2 class="font-title" style="color:#fef3c7; text-align:center; margin-bottom:5px; font-size:1.25rem;">Our Love Story</h2>
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:14px; font-style:italic;">Perjalanan cinta yang membawa kami ke hari bahagia ini</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2022</div>
-                    <div class="timeline-title">Pertama Bertemu</div>
-                    <div class="timeline-desc">Semua berawal dari pertemuan sederhana yang tak disangka akan menjadi awal dari segalanya.</div>
+            
+            <div class="story-stack">
+                <div class="story-card-item">
+                    <div class="story-card-header">
+                        <div class="story-card-title">Pertama Bertemu</div>
+                        <span class="story-year">2022</span>
+                    </div>
+                    <div class="story-card-desc">Semua berawal dari pertemuan sederhana yang tak disangka akan menjadi awal dari segalanya.</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2022</div>
-                    <div class="timeline-title">Mulai Menjalin Hubungan</div>
-                    <div class="timeline-desc">Dengan penuh keyakinan, kami memutuskan untuk saling mengenal lebih dalam.</div>
+                <div class="story-card-item">
+                    <div class="story-card-header">
+                        <div class="story-card-title">Mulai Menjalin Hubungan</div>
+                        <span class="story-year">2022</span>
+                    </div>
+                    <div class="story-card-desc">Dengan penuh keyakinan, kami memutuskan untuk saling mengenal lebih dalam.</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2025</div>
-                    <div class="timeline-title">Lamaran</div>
-                    <div class="timeline-desc">Di hadapan keluarga, kami mengikat janji untuk menempuh hidup bersama.</div>
+                <div class="story-card-item">
+                    <div class="story-card-header">
+                        <div class="story-card-title">Lamaran</div>
+                        <span class="story-year">2025</span>
+                    </div>
+                    <div class="story-card-desc">Di hadapan keluarga, kami mengikat janji untuk menempuh hidup bersama.</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">21 Des 2026</div>
-                    <div class="timeline-title">Hari Pernikahan</div>
-                    <div class="timeline-desc">Insyaallah kami akan mengucapkan janji suci di hadapan Allah SWT dan keluarga.</div>
+                <div class="story-card-item">
+                    <div class="story-card-header">
+                        <div class="story-card-title">Hari Pernikahan</div>
+                        <span class="story-year">21 Des 2026</span>
+                    </div>
+                    <div class="story-card-desc">Insyaallah kami akan mengucapkan janji suci di hadapan Allah SWT dan keluarga.</div>
                 </div>
             </div>
         </section>
@@ -274,19 +285,21 @@
             </div>
         </section>
 
-        <!-- ACARA -->
+        <!-- ACARA (RESEPSI 20 DESEMBER 2026) -->
         <section class="section-card fade-up" style="text-align:center; background:rgba(19,62,50,0.45);">
             <h2 class="font-title" style="font-size:1.4rem; margin-bottom:12px;">Rangkaian Acara</h2>
             <div class="event-card">
                 <i class="fas fa-ring" style="font-size:1.4rem; color:#d97706; margin-bottom:4px;"></i>
                 <h3 style="color:#fef3c7; font-size:1rem;">Akad Nikah</h3>
-                <p style="font-size:0.85rem;">08.00 WIB - Selesai</p>
+                <p style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Senin, 21 Desember 2026</p>
+                <p style="font-size:0.8rem;">08.00 WIB - Selesai</p>
                 <p style="font-size:0.78rem; color:#e7d8c9;">(Tempat akan segera diinformasikan)</p>
             </div>
             <div class="event-card">
                 <i class="fas fa-glass-cheers" style="font-size:1.4rem; color:#d97706; margin-bottom:4px;"></i>
                 <h3 style="color:#fef3c7; font-size:1rem;">Resepsi</h3>
-                <p style="font-size:0.85rem;">08.00 WIB - Selesai</p>
+                <p style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Minggu, 20 Desember 2026</p>
+                <p style="font-size:0.8rem;">10.00 WIB - Selesai</p>
                 <p style="font-size:0.78rem; color:#e7d8c9;">(Tempat akan segera diinformasikan)</p>
             </div>
             <div class="map-container">
@@ -536,12 +549,15 @@
             list.unshift(formData);
             localStorage.setItem('ucapanHanifAsri', JSON.stringify(list));
 
-            document.getElementById('status').innerText = 'Ucapan berhasil disimpan.';
+            document.getElementById('status').innerText = 'Terima kasih, ucapan berhasil dikirim!';
             document.getElementById('inputUcapan').value = '';
-            document.getElementById('inputKehadiran').value = '';
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Ucapan';
             muatUcapan();
+
+            setTimeout(function() {
+                document.getElementById('status').innerText = '';
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Ucapan';
+            }, 2500);
         });
     </script>
 </body>
