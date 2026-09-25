@@ -150,10 +150,17 @@
         /* KOMPONEN LAINNYA */
         .couple-card-glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(217,119,6,0.35); padding: 18px; border-radius: 14px; width: 100%; }
         .couple-avatar-glass { width: 56px; height: 56px; margin: 0 auto 8px; border-radius: 50%; border: 2px solid #d97706; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fef3c7; }
+        
+        /* EFEK DENYUT (PULSE) PADA COUNTDOWN */
         .countdown-grid { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
         .time-box { background: rgba(0,0,0,0.5); border: 1px solid #d97706; border-radius: 10px; padding: 10px 6px; min-width: 60px; text-align: center; }
-        .time-box span { font-size: 1.3rem; font-weight: 700; color: #fef3c7; display: block; }
+        .time-box span { font-size: 1.3rem; font-weight: 700; color: #fef3c7; display: block; animation: pulseLive 1s infinite alternate; }
         .time-box p { font-size: 0.68rem; color: #e7d8c9; }
+        @keyframes pulseLive {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.07); opacity: 1; color: #fff; text-shadow: 0 0 8px #d97706; }
+        }
+
         .event-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(217,119,6,0.28); border-radius: 12px; padding: 16px; margin-bottom: 12px; text-align: center; }
         
         /* AMPLOP DIGITAL */
@@ -430,7 +437,7 @@
             <p style="font-size:0.75rem; color:#e7d8c9; margin-top:8px;"><i class="fas fa-map-marker-alt" style="color:#d97706;"></i> Lokasi akan segera diupdate</p>
         </section>
 
-        <!-- AMPLOP (DENGAN REKENING MANDIRI) -->
+        <!-- AMPLOP (DENGAN REKENING MANDIRI TANPA a.n.) -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">Amplop Digital</h2>
@@ -440,14 +447,14 @@
             <div class="bank-card">
                 <div style="font-weight:700; color:#d97706; letter-spacing:1.5px; font-size:0.9rem;">BANK MANDIRI</div>
                 <div style="font-size:1.25rem; font-weight:bold; margin:8px 0 4px; letter-spacing:1px;" id="rekMandiri">1800016498992</div>
-                <div style="font-size:0.8rem; color:#e7d8c9;">a.n. Hanif Abubakar</div>
+                <div style="font-size:0.8rem; color:#e7d8c9;">Hanif Abubakar</div>
                 <button style="background:transparent; border:1px solid #d97706; color:#fef3c7; padding:7px 14px; border-radius:20px; font-size:0.8rem; margin-top:10px; cursor:pointer;" onclick="copyRekening('1800016498992')">
                     <i class="far fa-copy"></i> Salin Rekening
                 </button>
             </div>
         </section>
 
-        <!-- RSVP & UCAPAN (DENGAN FILTER & STIKER) -->
+        <!-- RSVP & UCAPAN -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">RSVP & Ucapan</h2>
