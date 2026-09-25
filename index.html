@@ -152,6 +152,24 @@
         .couple-photo-container { width: 110px; height: 110px; margin: 0 auto 12px; border-radius: 50%; border: 3px solid #d97706; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5); background: rgba(0,0,0,0.3); }
         .couple-photo-container img { width: 100%; height: 100%; object-fit: cover; }
         
+        /* GAYA ANIMASI KETIK (TYPING EFFECT) */
+        .typing-text {
+            font-size: 0.78rem;
+            color: #e7d8c9;
+            margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            display: inline-block;
+        }
+        .couple-card-glass.active .typing-text {
+            animation: typing 2.2s steps(44, end) forwards;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
         .countdown-grid { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
         .time-box { background: rgba(0,0,0,0.5); border: 1px solid #d97706; border-radius: 10px; padding: 10px 6px; min-width: 60px; text-align: center; }
         .time-box span { font-size: 1.3rem; font-weight: 700; color: #fef3c7; display: block; animation: pulseLive 1s infinite alternate; }
@@ -355,21 +373,21 @@
             <p style="font-size:0.8rem; color:#e7d8c9; font-style:italic; margin-bottom:16px;">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             <div style="display:flex; flex-direction:column; gap:12px;">
                 <!-- Mempelai Pria -->
-                <div class="couple-card-glass">
+                <div class="couple-card-glass fade-up">
                     <div class="couple-photo-container">
                         <img src="https://lh3.googleusercontent.com/d/1mSAE7IXHNgt9m4KsJHsVBQe8Cq4tVAq3" alt="Hanif Abubakar">
                     </div>
                     <h3 class="gold-foil-text" style="font-size:1.05rem;">Hanif Abubakar</h3>
-                    <p style="font-size:0.78rem; color:#e7d8c9; margin-top:3px;">Putra dari Bpk. Muji Raharjo & Ibu Arminah</p>
+                    <p class="typing-text">Putra pertama dari Bpk. Muji Raharjo & Ibu Arminah</p>
                 </div>
                 <div class="font-title gold-foil-text" style="font-size:1.4rem;">&</div>
                 <!-- Mempelai Wanita -->
-                <div class="couple-card-glass">
+                <div class="couple-card-glass fade-up">
                     <div class="couple-photo-container">
                         <img src="https://lh3.googleusercontent.com/d/1X0xq6Ofb2Sh8jvvAtX4ZgK62Bc2xHwPR" alt="Asriwati">
                     </div>
                     <h3 class="gold-foil-text" style="font-size:1.05rem;">Asriwati</h3>
-                    <p style="font-size:0.78rem; color:#e7d8c9; margin-top:3px;">Putri dari Bpk. Karsono & Ibu Suwinah</p>
+                    <p class="typing-text">Putri kedua dari Bpk. Karsono & Ibu Suwinah</p>
                 </div>
             </div>
         </section>
@@ -462,7 +480,7 @@
                 <!-- Kartu 1 (Paling Atas) -->
                 <div class="swipe-card" style="z-index: 3;" onclick="openLightboxDirect('https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik')">
                     <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Utama">
-                    <div class="swipe-card-caption">Pr鸳niewah Kami (1/3) — Geser ➔</div>
+                    <div class="swipe-card-caption">Pernikahan Kami (1/3) — Geser ➔</div>
                 </div>
             </div>
             <div class="gallery-instruction">Ketuk foto untuk memperbesar</div>
@@ -717,7 +735,6 @@
             let isDragging = false;
 
             card.addEventListener('pointerdown', (e) => {
-                // Hanya izinkan kartu paling atas yang digeser
                 if (card !== swipeStack.lastElementChild) return;
                 isDragging = true;
                 startX = e.clientX;
@@ -735,7 +752,6 @@
                 isDragging = false;
                 
                 if (Math.abs(currentX) > 100) {
-                    // Jika digeser cukup jauh, lempar kartu ke samping lalu pindahkan ke urutan paling bawah
                     card.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
                     card.style.transform = `translateX(${currentX > 0 ? 400 : -400}px) rotate(${currentX > 0 ? 30 : -30}deg)`;
                     card.style.opacity = '0';
@@ -744,12 +760,10 @@
                         card.style.transition = 'none';
                         card.style.transform = '';
                         card.style.opacity = '1';
-                        // Pindahkan elemen teratas ke bagian paling bawah tumpukan (DOM)
                         swipeStack.prepend(card);
                         updateStackOrder();
                     }, 400);
                 } else {
-                    // Kembali ke posisi semula jika geseran kurang
                     card.style.transition = 'transform 0.3s ease';
                     card.style.transform = '';
                 }
