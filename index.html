@@ -83,10 +83,10 @@
         .cover-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
         .cover-bg-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,18,16,0.55) 0%, rgba(10,9,8,0.92) 100%); z-index: 2; }
         .cover-card { position: relative; z-index: 3; background: rgba(255,255,255,0.09); border: 1.5px solid rgba(217,119,6,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 18px; padding: 22px 16px; width: 100%; max-width: 360px; text-align: center; color: #fff; }
-        .btn-gold { background: linear-gradient(135deg, #d97706, #78350f); color: #fff; font-weight: 700; border: 1px solid #fef3c7; padding: 12px 26px; font-size: 0.95rem; border-radius: 30px; cursor: pointer; display: inline-block; transition: transform 0.2s ease, opacity 0.2s ease; }
+        .btn-gold { background: linear-gradient(135deg, #d97706, #78350f); color: #fff; font-weight: 700; border: 1px solid #fef3c7; padding: 12px 26px; font-size: 0.95rem; border-radius: 30px; cursor: pointer; display: inline-block; text-decoration: none; transition: transform 0.2s ease, opacity 0.2s ease; }
         .btn-gold:active { transform: scale(0.96); }
 
-        /* KONTINUE & KARTU UTAMA DENGAN ORNAMEN SUDUT BATIK (MENGGUNAKAN SIMBOL KAWUNG/BATIK '❖') */
+        /* KONTINUE & KARTU UTAMA DENGAN ORNAMEN SUDUT BATIK */
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
         .section-card { 
             margin: 40px 14px; 
@@ -114,7 +114,7 @@
             margin-bottom: 14px;
         }
 
-        /* HERO (KARTU 1 - POSISI DI BAWAH) */
+        /* HERO (KARTU 1) */
         .sec-hero-wrapper {
             padding-top: 55vh;
             padding-bottom: 20px;
@@ -151,7 +151,6 @@
         .couple-card-glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(217,119,6,0.35); padding: 18px; border-radius: 14px; width: 100%; }
         .couple-avatar-glass { width: 56px; height: 56px; margin: 0 auto 8px; border-radius: 50%; border: 2px solid #d97706; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fef3c7; }
         
-        /* EFEK DENYUT (PULSE) PADA COUNTDOWN */
         .countdown-grid { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
         .time-box { background: rgba(0,0,0,0.5); border: 1px solid #d97706; border-radius: 10px; padding: 10px 6px; min-width: 60px; text-align: center; }
         .time-box span { font-size: 1.3rem; font-weight: 700; color: #fef3c7; display: block; animation: pulseLive 1s infinite alternate; }
@@ -179,7 +178,7 @@
         .badge-tidak { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; margin-bottom: 40px; }
         
-        /* LOVE STORY - TIMELINE VERTICAL */
+        /* LOVE STORY */
         .story-stack { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; position: relative; padding-left: 16px; border-left: 2px dashed rgba(217,119,6,0.4); }
         .story-card-item { 
             background: rgba(255,255,255,0.06); 
@@ -205,7 +204,7 @@
         .story-card-title { font-size: 0.95rem; color: #fff; font-weight: 600; }
         .story-card-desc { font-size: 0.8rem; color: #e7d8c9; }
 
-        /* GALERI FOTO KUSTOM (1 UTAMA DI ATAS, 2 PENDUKUNG DI BAWAH) */
+        /* GALERI FOTO */
         .gallery-custom-grid { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
         .gallery-main-item { width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; border: 1px solid rgba(217,119,6,0.35); cursor: pointer; }
         .gallery-main-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
@@ -218,15 +217,15 @@
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 100%; max-height: 78vh; border-radius: 10px; border: 2px solid #d97706; }
         .lightbox-close { position: absolute; top: 12px; right: 14px; font-size: 1.7rem; color: #fff; background: none; border: none; cursor: pointer; z-index: 2001; }
-        .map-container { border-radius: 12px; overflow: hidden; margin-top: 12px; border: 1px solid rgba(217,119,6,0.3); }
-        .map-container iframe { width: 100%; height: 180px; border: 0; }
+        
+        .map-btn-wrapper { margin-top: 14px; text-align: center; }
         .btn-calendar { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid #d97706; color: #fef3c7; padding: 8px 14px; border-radius: 30px; font-size: 0.82rem; margin-top: 12px; cursor: pointer; }
         .share-buttons { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
         .btn-share { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 30px; font-size: 0.82rem; font-weight: 600; border: none; color: #fff; cursor: pointer; }
         .btn-whatsapp { background: #25D366; }
         .btn-copy { background: transparent; border: 1px solid #d97706; color: #fef3c7; }
         
-        /* KUTIPAN AYAT YANG DIPERINDAH & MENONJOL */
+        /* KUTIPAN AYAT */
         .ayat-box { 
             background: linear-gradient(145deg, rgba(35,28,20,0.85), rgba(15,12,10,0.95)); 
             border: 1.5px solid #d97706; 
@@ -295,7 +294,7 @@
     <!-- KONTEN UTAMA -->
     <div id="mainContent" class="main-container hide">
 
-        <!-- HERO (KARTU 1 - POSISI DI BAWAH) -->
+        <!-- HERO (KARTU 1) -->
         <div class="sec-hero-wrapper">
             <section class="section-card sec-hero fade-up">
                 <p style="color:#fef3c7; font-size:0.9rem; letter-spacing:1.5px;">The Wedding of</p>
@@ -328,7 +327,7 @@
             </div>
         </section>
 
-        <!-- AYAT (KARTU 3 - DIPERINDAH & MENONJOL) -->
+        <!-- AYAT (KARTU 3) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Kutipan Ayat</h2>
@@ -340,7 +339,7 @@
             </div>
         </section>
 
-        <!-- LOVE STORY (KARTU 4 - TIMELINE VERTICAL) -->
+        <!-- LOVE STORY (KARTU 4) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Our Love Story</h2>
@@ -395,7 +394,7 @@
             </button>
         </section>
 
-        <!-- GALERI (KARTU 6 - CUSTOM GRID) -->
+        <!-- GALERI (KARTU 6) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Galeri</h2>
@@ -412,7 +411,7 @@
             </div>
         </section>
 
-        <!-- ACARA -->
+        <!-- ACARA & LOKASI GOOGLE MAPS -->
         <section class="section-card fade-up" style="text-align:center; background:rgba(19,62,50,0.45);">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">Rangkaian Acara</h2>
@@ -422,22 +421,23 @@
                 <h3 style="color:#fef3c7; font-size:1rem;">Akad Nikah</h3>
                 <p style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Senin, 21 Desember 2026</p>
                 <p style="font-size:0.8rem;">08.00 WIB - Selesai</p>
-                <p style="font-size:0.78rem; color:#e7d8c9;">(Tempat akan segera diinformasikan)</p>
             </div>
             <div class="event-card">
                 <i class="fas fa-glass-cheers" style="font-size:1.4rem; color:#d97706; margin-bottom:4px;"></i>
                 <h3 style="color:#fef3c7; font-size:1rem;">Resepsi</h3>
                 <p style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Minggu, 20 Desember 2026</p>
                 <p style="font-size:0.8rem;">10.00 WIB - Selesai</p>
-                <p style="font-size:0.78rem; color:#e7d8c9;">(Tempat akan segera diinformasikan)</p>
             </div>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966!2d106.8!3d-6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDAuMCJTIDEwNsKwNDgnMDAuMCJF!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen loading="lazy"></iframe>
+            
+            <div class="map-btn-wrapper">
+                <p style="font-size:0.8rem; color:#fef3c7; margin-bottom:10px;"><i class="fas fa-map-marker-alt" style="color:#d97706;"></i> Lokasi Acara Pernikahan</p>
+                <a href="https://maps.app.goo.gl/Gae3cZB9nj4qrRbA8" target="_blank" rel="noopener noreferrer" class="btn-gold" style="font-size:0.85rem; padding:10px 20px;">
+                    <i class="fas fa-location-dot"></i> Buka Petunjuk Arah (Google Maps)
+                </a>
             </div>
-            <p style="font-size:0.75rem; color:#e7d8c9; margin-top:8px;"><i class="fas fa-map-marker-alt" style="color:#d97706;"></i> Lokasi akan segera diupdate</p>
         </section>
 
-        <!-- AMPLOP -->
+        <!-- AMPLOP DIGITAL -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">Amplop Digital</h2>
@@ -445,10 +445,10 @@
             <p style="font-size:0.8rem; color:#e7d8c9; margin-bottom:14px;">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika ingin memberikan tanda kasih, dapat melalui:</p>
             
             <div class="bank-card">
-                <div style="font-weight:700; color:#d97706; letter-spacing:1.5px; font-size:0.9rem;">BANK MANDIRI</div>
-                <div style="font-size:1.25rem; font-weight:bold; margin:8px 0 4px; letter-spacing:1px;" id="rekMandiri">1800016498992</div>
-                <div style="font-size:0.8rem; color:#e7d8c9;">Hanif Abubakar</div>
-                <button style="background:transparent; border:1px solid #d97706; color:#fef3c7; padding:7px 14px; border-radius:20px; font-size:0.8rem; margin-top:10px; cursor:pointer;" onclick="copyRekening('1800016498992')">
+                <div style="font-weight:700; color:#d97706; letter-spacing:1.5px; font-size:0.9rem;">BANK BCA</div>
+                <div style="font-size:1.25rem; font-weight:bold; margin:8px 0 4px; letter-spacing:1px;" id="rekBca">8731046883</div>
+                <div style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Asriwati</div>
+                <button style="background:transparent; border:1px solid #d97706; color:#fef3c7; padding:7px 14px; border-radius:20px; font-size:0.8rem; margin-top:10px; cursor:pointer;" onclick="copyRekening('8731046883')">
                     <i class="far fa-copy"></i> Salin Rekening
                 </button>
             </div>
@@ -547,6 +547,16 @@
 
     <!-- SCRIPT JAVASCRIPT -->
     <script>
+        // Memuat elemen saat halaman siap
+        document.addEventListener("DOMContentLoaded", function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                setTimeout(() => {
+                    loadingScreen.classList.add('hide');
+                }, 800);
+            }
+        });
+
         // Ambil nama tamu dari URL (contoh: ?to=Budi)
         const urlParams = new URLSearchParams(window.location.search);
         const tamu = urlParams.get('to');
@@ -660,7 +670,7 @@
             window.open(googleCalendarUrl, '_blank');
         }
 
-        // Kirim RSVP & Ucapan (Simulasi Lokal / Penyimpanan Sederhana)
+        // Kirim RSVP & Ucapan
         const rsvpForm = document.getElementById('rsvpForm');
         rsvpForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -747,11 +757,10 @@
             });
         }
 
-        // Efek Partikel Background Sederhana
+        // Efek Partikel Background
         const particleContainer = document.getElementById('particleContainer');
         for (let i = 0; i < 20; i++) {
             const particle = document.createElement('div');
-            particle.classList.et('particle'); // (diperbaiki jadi classList.add)
             particle.classList.add('particle');
             const size = Math.random() * 4 + 2;
             particle.style.width = `${size}px`;
