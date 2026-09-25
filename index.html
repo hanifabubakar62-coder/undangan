@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Undangan Pernikahan Hanif & Asri</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,11 +16,33 @@
         .font-title { font-family: 'Cinzel Decorative', serif; }
         .hide { display: none !important; }
 
-        /* ========================= TRANSISI & SCROLL ANIMATION ========================= */
+        /* ========================= BACKGROUND PATEN ========================= */
+        .bg-fixed-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-fixed-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .bg-fixed-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(18,18,18,0.45) 0%, rgba(18,18,18,0.85) 100%);
+        }
+
+        /* ========================= TRANSISI & SCROLL ANIMATION (MUNCUL SATU PERSATU) ========================= */
         .fade-up { 
             opacity: 0; 
-            transform: translateY(40px); 
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+            transform: translateY(60px); 
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); 
             will-change: opacity, transform;
         }
         .fade-up.active { 
@@ -47,32 +69,30 @@
 
         /* ========================= MAIN ========================= */
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
-        .shared-bg-img { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; height: 100%; object-fit: cover; z-index: -1; pointer-events: none; }
-        .shared-overlay { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; height: 100%; background: linear-gradient(180deg, rgba(18,18,18,0.5) 0%, rgba(18,18,18,0.88) 100%); z-index: -1; pointer-events: none; }
-        
-        .section-card { margin: 16px 12px; border-radius: 18px; padding: 26px 16px; background: rgba(18,18,18,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.35), 0 0 0 1px rgba(217,119,6,0.25); color: #fff; }
+        .section-card { margin: 20px 12px; border-radius: 18px; padding: 26px 16px; background: rgba(18,18,18,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.35), 0 0 0 1px rgba(217,119,6,0.25); color: #fff; }
 
-        /* ========================= HERO (KARTU PERTAMA DI TENGAH) ========================= */
+        /* ========================= HERO (KARTU 1 DIBAWAH) ========================= */
         .sec-hero-wrapper {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
-            align-items: center;
+            align-items: flex-end; /* Posisi kartu berada di bagian bawah layar */
             justify-content: center;
-            padding: 20px 12px;
+            padding: 0 12px 40px 12px; /* Jarak bawah agar tidak terlalu menempel dasar layar */
             box-sizing: border-box;
         }
         .sec-hero { 
             border: 1.5px solid #d97706; 
             text-align: center; 
-            padding: 38px 16px; 
+            padding: 32px 16px; 
             width: 100%;
             margin: 0;
-            background: rgba(18,18,18,0.82);
+            background: rgba(18,18,18,0.85);
         }
         .sec-hero h1 { color: #d97706; font-size: 1.8rem; margin: 8px 0; }
         
         .scroll-down-hint {
-            margin-top: 24px;
+            margin-top: 20px;
             font-size: 0.75rem;
             color: #e7d8c9;
             letter-spacing: 1px;
@@ -194,12 +214,16 @@
         </div>
     </div>
 
+    <!-- BACKGROUND PATEN (DI LUAR KONTEN) -->
+    <div class="bg-fixed-container">
+        <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Bersama" class="bg-fixed-img">
+        <div class="bg-fixed-overlay"></div>
+    </div>
+
     <!-- KONTEN UTAMA -->
     <div id="mainContent" class="main-container hide">
-        <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Bersama" class="shared-bg-img">
-        <div class="shared-overlay"></div>
 
-        <!-- HERO (KARTU PERTAMA DI TENGAH) -->
+        <!-- HERO (KARTU 1 DIBAWAH, WAJAH WANITA DI BACKGROUND LEBIH TERLIHAT) -->
         <div class="sec-hero-wrapper">
             <section class="section-card sec-hero fade-up">
                 <p style="color:#fef3c7; font-size:0.85rem; letter-spacing:1px;">The Wedding of</p>
@@ -387,7 +411,6 @@
     </div>
 
     <script>
-        // NAMA TAMU DARI URL PARAMETER (?to=Nama%20Tamu)
         function getNamaTamu() {
             const params = new URLSearchParams(window.location.search);
             const nama = params.get('to');
@@ -398,7 +421,6 @@
             }
         }
 
-        // LOADING & INIT
         window.addEventListener('load', function() {
             getNamaTamu();
             setTimeout(function() {
@@ -451,21 +473,20 @@
             }
         });
 
-        // SCROLL ANIMATION (INTERSECTION OBSERVER)
         function setupScrollAnimation() {
+            // threshold 0.2 agar kartu baru muncul saat sudah agak naik ke tengah layar
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                     }
                 });
-            }, { threshold: 0.12 });
+            }, { threshold: 0.2 });
             document.querySelectorAll('.fade-up').forEach(function(el) {
                 observer.observe(el);
             });
         }
 
-        // COUNTDOWN
         const weddingDate = new Date("December 21, 2026 08:00:00 GMT+0700").getTime();
         function updateCountdown() {
             const now = new Date().getTime();
@@ -483,7 +504,6 @@
             document.getElementById('seconds').innerText = Math.floor((distance % (1000 * 60)) / 1000);
         }
 
-        // GOOGLE CALENDAR
         function addToCalendar() {
             const title = encodeURIComponent("Pernikahan Hanif & Asri");
             const details = encodeURIComponent("Acara pernikahan Hanif Abubakar & Asriwati");
@@ -493,13 +513,11 @@
             window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + title + "&dates=" + start + "/" + end + "&details=" + details + "&location=" + location, "_blank");
         }
 
-        // WHATSAPP SHARE
         function shareWhatsApp() {
             const text = "Assalamu'alaikum Wr. Wb.\n\nDengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:\n\n*Hanif Abubakar & Asriwati*\nSenin, 21 Desember 2026\n\nBuka undangan lengkap di sini:\n" + window.location.href;
             window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
         }
 
-        // COPY LINK
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(function() {
                 alert("Link undangan berhasil disalin!");
@@ -514,7 +532,6 @@
             });
         }
 
-        // LIGHTBOX
         function openLightbox(el) {
             document.getElementById('lightbox-img').src = el.querySelector('img').src;
             document.getElementById('lightbox').classList.add('active');
@@ -523,14 +540,12 @@
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        // SALIN REKENING
         function copyRekening(noRek) {
             navigator.clipboard.writeText(noRek).then(function() {
                 alert('Nomor rekening berhasil disalin: ' + noRek);
             });
         }
 
-        // RSVP & UCAPAN (LOCAL STORAGE)
         function muatUcapan() {
             const list = JSON.parse(localStorage.getItem('ucapanHanifAsri') || '[]');
             const container = document.getElementById('daftarUcapan');
