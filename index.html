@@ -16,21 +16,27 @@
         .font-title { font-family: 'Cinzel Decorative', serif; }
         .hide { display: none !important; }
 
-        /* ========================= BACKGROUND PATEN ========================= */
+        /* ========================= BACKGROUND PATEN (DIKUNCI STABIL) ========================= */
         .bg-fixed-container {
             position: fixed;
-            inset: 0;
-            width: 100%;
+            top: 0;
+            left: 0;
+            width: 100vw;
             height: 100vh;
-            height: 100dvh;
+            height: 100svh;
             z-index: -1;
             overflow: hidden;
             pointer-events: none;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         .bg-fixed-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         .bg-fixed-overlay {
             position: absolute;
@@ -71,15 +77,10 @@
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
         .section-card { margin: 20px 12px; border-radius: 18px; padding: 26px 16px; background: rgba(18,18,18,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.35), 0 0 0 1px rgba(217,119,6,0.25); color: #fff; }
 
-        /* ========================= HERO (KARTU 1 DIBAWAH) ========================= */
+        /* ========================= HERO (KARTU 1 DIBAWAH & PAS) ========================= */
         .sec-hero-wrapper {
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            align-items: flex-end; /* Posisi kartu berada di bagian bawah layar */
-            justify-content: center;
-            padding: 0 12px 40px 12px; /* Jarak bawah agar tidak terlalu menempel dasar layar */
-            box-sizing: border-box;
+            padding-top: 55vh; /* Memberi ruang kosong di atas agar wajah wanita terlihat bersih */
+            padding-bottom: 20px;
         }
         .sec-hero { 
             border: 1.5px solid #d97706; 
@@ -214,7 +215,7 @@
         </div>
     </div>
 
-    <!-- BACKGROUND PATEN (DI LUAR KONTEN) -->
+    <!-- BACKGROUND PATEN (DIKUNCI STABIL) -->
     <div class="bg-fixed-container">
         <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Bersama" class="bg-fixed-img">
         <div class="bg-fixed-overlay"></div>
@@ -223,7 +224,7 @@
     <!-- KONTEN UTAMA -->
     <div id="mainContent" class="main-container hide">
 
-        <!-- HERO (KARTU 1 DIBAWAH, WAJAH WANITA DI BACKGROUND LEBIH TERLIHAT) -->
+        <!-- HERO (KARTU 1 DIBAWAH & MENGALIR MULUS) -->
         <div class="sec-hero-wrapper">
             <section class="section-card sec-hero fade-up">
                 <p style="color:#fef3c7; font-size:0.85rem; letter-spacing:1px;">The Wedding of</p>
@@ -474,7 +475,6 @@
         });
 
         function setupScrollAnimation() {
-            // threshold 0.2 agar kartu baru muncul saat sudah agak naik ke tengah layar
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {
@@ -586,7 +586,7 @@
             };
 
             if (!formData.nama || !formData.kehadiran || !formData.ucapan) {
-                alert('Mohon lengkapi semua data.');
+                alert('Mohon lengkapi semua data. Data harus diisi.');
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Ucapan';
                 return;
