@@ -147,9 +147,10 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* KOMPONEN LAINNYA */
-        .couple-card-glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(217,119,6,0.35); padding: 18px; border-radius: 14px; width: 100%; }
-        .couple-avatar-glass { width: 56px; height: 56px; margin: 0 auto 8px; border-radius: 50%; border: 2px solid #d97706; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fef3c7; }
+        /* KOMPONEN MEMPELAI DENGAN FOTO ASLI */
+        .couple-card-glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(217,119,6,0.35); padding: 18px; border-radius: 14px; width: 100%; text-align: center; }
+        .couple-photo-container { width: 110px; height: 110px; margin: 0 auto 12px; border-radius: 50%; border: 3px solid #d97706; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5); background: rgba(0,0,0,0.3); }
+        .couple-photo-container img { width: 100%; height: 100%; object-fit: cover; }
         
         .countdown-grid { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
         .time-box { background: rgba(0,0,0,0.5); border: 1px solid #d97706; border-radius: 10px; padding: 10px 6px; min-width: 60px; text-align: center; }
@@ -313,14 +314,20 @@
             </div>
             <p style="font-size:0.8rem; color:#e7d8c9; font-style:italic; margin-bottom:16px;">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             <div style="display:flex; flex-direction:column; gap:12px;">
+                <!-- Mempelai Pria -->
                 <div class="couple-card-glass">
-                    <div class="couple-avatar-glass"><i class="fas fa-user-tie"></i></div>
+                    <div class="couple-photo-container">
+                        <img src="https://lh3.googleusercontent.com/d/1mSAE7IXHNgt9m4KsJHsVBQe8Cq4tVAq3" alt="Hanif Abubakar">
+                    </div>
                     <h3 class="gold-foil-text" style="font-size:1.05rem;">Hanif Abubakar</h3>
                     <p style="font-size:0.78rem; color:#e7d8c9; margin-top:3px;">Putra dari Bpk. Muji Raharjo & Ibu Arminah</p>
                 </div>
                 <div class="font-title gold-foil-text" style="font-size:1.4rem;">&</div>
+                <!-- Mempelai Wanita -->
                 <div class="couple-card-glass">
-                    <div class="couple-avatar-glass"><i class="fas fa-user-nurse"></i></div>
+                    <div class="couple-photo-container">
+                        <img src="https://lh3.googleusercontent.com/d/1X0xq6Ofb2Sh8jvvAtX4ZgK62Bc2xHwPR" alt="Asriwati">
+                    </div>
                     <h3 class="gold-foil-text" style="font-size:1.05rem;">Asriwati</h3>
                     <p style="font-size:0.78rem; color:#e7d8c9; margin-top:3px;">Putri dari Bpk. Karsono & Ibu Suwinah</p>
                 </div>
