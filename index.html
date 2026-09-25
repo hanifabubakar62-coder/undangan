@@ -114,9 +114,23 @@
         .badge-tidak { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; margin-bottom: 40px; }
         
-        /* LOVE STORY - STYLE KARTU BERDERET (STACK) */
+        /* LOVE STORY - STYLE KARTU BERDERET DENGAN EFEK ANIMASI */
         .story-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
-        .story-card-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(217,119,6,0.3); border-radius: 12px; padding: 14px 16px; text-align: left; position: relative; }
+        .story-card-item { 
+            background: rgba(255,255,255,0.06); 
+            border: 1px solid rgba(217,119,6,0.3); 
+            border-radius: 12px; 
+            padding: 14px 16px; 
+            text-align: left; 
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .story-card-item.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
         .story-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
         .story-year { font-size: 0.75rem; color: #fef3c7; font-weight: 700; background: rgba(217,119,6,0.25); padding: 2px 8px; border-radius: 20px; border: 1px solid rgba(217,119,6,0.4); }
         .story-card-title { font-size: 0.95rem; color: #fff; font-weight: 600; }
@@ -222,34 +236,34 @@
             </div>
         </section>
 
-        <!-- LOVE STORY (KARTU 4 - GAYA KARTU STACK) -->
+        <!-- LOVE STORY (KARTU 4 - GAYA KARTU STACK DENGAN EFEK ANIMASI) -->
         <section class="section-card fade-up">
             <h2 class="font-title" style="color:#fef3c7; text-align:center; margin-bottom:5px; font-size:1.25rem;">Our Love Story</h2>
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:14px; font-style:italic;">Perjalanan cinta yang membawa kami ke hari bahagia ini</p>
             
             <div class="story-stack">
-                <div class="story-card-item">
+                <div class="story-card-item fade-up">
                     <div class="story-card-header">
                         <div class="story-card-title">Pertama Bertemu</div>
                         <span class="story-year">2022</span>
                     </div>
                     <div class="story-card-desc">Semua berawal dari pertemuan sederhana yang tak disangka akan menjadi awal dari segalanya.</div>
                 </div>
-                <div class="story-card-item">
+                <div class="story-card-item fade-up">
                     <div class="story-card-header">
                         <div class="story-card-title">Mulai Menjalin Hubungan</div>
                         <span class="story-year">2022</span>
                     </div>
                     <div class="story-card-desc">Dengan penuh keyakinan, kami memutuskan untuk saling mengenal lebih dalam.</div>
                 </div>
-                <div class="story-card-item">
+                <div class="story-card-item fade-up">
                     <div class="story-card-header">
                         <div class="story-card-title">Lamaran</div>
                         <span class="story-year">2025</span>
                     </div>
                     <div class="story-card-desc">Di hadapan keluarga, kami mengikat janji untuk menempuh hidup bersama.</div>
                 </div>
-                <div class="story-card-item">
+                <div class="story-card-item fade-up">
                     <div class="story-card-header">
                         <div class="story-card-title">Hari Pernikahan</div>
                         <span class="story-year">21 Des 2026</span>
