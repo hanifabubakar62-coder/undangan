@@ -147,12 +147,11 @@
             60% { transform: translateY(-4px); }
         }
 
-        /* KOMPONEN MEMPELAI DENGAN FOTO ASLI */
+        /* KOMPONEN MEMPELAI DENGAN FOTO & ANIMASI MENGETIK (TYPING EFFECT) */
         .couple-card-glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(217,119,6,0.35); padding: 18px; border-radius: 14px; width: 100%; text-align: center; }
         .couple-photo-container { width: 110px; height: 110px; margin: 0 auto 12px; border-radius: 50%; border: 3px solid #d97706; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.5); background: rgba(0,0,0,0.3); }
         .couple-photo-container img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* GAYA ANIMASI KETIK (TYPING EFFECT) 2 BARIS */
         .typing-line {
             font-size: 0.78rem;
             color: #e7d8c9;
@@ -161,15 +160,14 @@
             overflow: hidden;
             width: 0;
             display: inline-block;
+            border-right: 2px solid #d97706; /* Kursor berkedip */
         }
         
-        /* Baris 1: Urutan Anak */
         .couple-card-glass.active .typing-line-1 {
-            animation: typing1 1.4s steps(22, end) forwards;
+            animation: typing1 1.4s steps(22, end) forwards, blinkCursor 0.75s step-end infinite;
         }
-        /* Baris 2: Nama Orang Tua (Delay agar berjalan setelah baris 1 selesai) */
         .couple-card-glass.active .typing-line-2 {
-            animation: typing2 1.8s steps(35, end) 1.4s forwards;
+            animation: typing2 1.8s steps(35, end) 1.4s forwards, blinkCursor 0.75s step-end infinite;
         }
 
         @keyframes typing1 {
@@ -179,6 +177,10 @@
         @keyframes typing2 {
             from { width: 0; }
             to { width: 100%; }
+        }
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #d97706; }
         }
         
         .countdown-grid { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
@@ -206,7 +208,7 @@
         .music-btn.playing { animation: spin 4s linear infinite; }
         .badge-hadir { background: #10b981; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .badge-tidak { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
-        .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; margin-bottom: 40px; }
+        .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; padding: 20px; border-radius: 14px; margin: 40px 14px; background: rgba(18,18,18,0.85); }
         
         /* LOVE STORY */
         .story-stack { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; position: relative; padding-left: 16px; border-left: 2px dashed rgba(217,119,6,0.4); }
@@ -234,7 +236,7 @@
         .story-card-title { font-size: 0.95rem; color: #fff; font-weight: 600; }
         .story-card-desc { font-size: 0.8rem; color: #e7d8c9; }
 
-        /* GALERI FOTO - EFEK TUMPUKAN KARTU / KIPAS (SWIPE STACK) */
+        /* GALERI FOTO */
         .swipe-gallery-container {
             position: relative;
             width: 100%;
@@ -261,7 +263,7 @@
         .swipe-card img {
             width: 100%;
             height: 82%;
-            object-fit: contain;
+            object-fit: cover;
             background: #000;
         }
         .swipe-card-caption {
@@ -291,7 +293,7 @@
         .map-btn-wrapper { margin-top: 14px; text-align: center; }
         .btn-calendar { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid #d97706; color: #fef3c7; padding: 8px 14px; border-radius: 30px; font-size: 0.82rem; margin-top: 12px; cursor: pointer; }
         .share-buttons { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
-        .btn-share { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 30px; font-size: 0.82rem; font-weight: 600; border: none; color: #fff; cursor: pointer; }
+        .btn-share { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 30px; font-size: 0.82rem; font-weight: 600; border: none; color: #fff; cursor: pointer; text-decoration: none; }
         .btn-whatsapp { background: #25D366; }
         .btn-copy { background: transparent; border: 1px solid #d97706; color: #fef3c7; }
         
@@ -319,7 +321,6 @@
         .ayat-latin { font-size: 0.82rem; color: #f3e5d0; font-style: italic; margin-bottom: 8px; }
         .ayat-sumber { font-size: 0.78rem; color: #d97706; font-weight: 700; letter-spacing: 1px; }
 
-        /* GENERATOR LINK TAMU OTOMATIS */
         .generator-box { background: rgba(255,255,255,0.05); border: 1px dashed rgba(217,119,6,0.4); padding: 14px; border-radius: 12px; margin-top: 12px; text-align: left; }
     </style>
 </head>
@@ -476,7 +477,7 @@
             </button>
         </section>
 
-        <!-- GALERI (KARTU 6 - EFEK KIPAS / KARTU REMI Tumpuk) -->
+        <!-- GALERI (KARTU 6) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
                 <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Galeri</h2>
@@ -484,17 +485,14 @@
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:4px;">Geser foto ke samping untuk melihat foto berikutnya</p>
             
             <div class="swipe-gallery-container" id="swipeStack">
-                <!-- Kartu 3 (Paling Bawah) -->
                 <div class="swipe-card" style="z-index: 1; transform: scale(0.92) translateY(16px);" onclick="openLightboxDirect('https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik')">
                     <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto 3">
                     <div class="swipe-card-caption">Momen Bahagia Bersama (3/3)</div>
                 </div>
-                <!-- Kartu 2 (Tengah) -->
                 <div class="swipe-card" style="z-index: 2; transform: scale(0.96) translateY(8px);" onclick="openLightboxDirect('https://lh3.googleusercontent.com/d/1xqEx9mO9Txn5OdfCSsGxI0le5pdS54Tw')">
                     <img src="https://lh3.googleusercontent.com/d/1xqEx9mO9Txn5OdfCSsGxI0le5pdS54Tw" alt="Foto 2">
                     <div class="swipe-card-caption">Kebersamaan Hangat (2/3)</div>
                 </div>
-                <!-- Kartu 1 (Paling Atas) -->
                 <div class="swipe-card" style="z-index: 3;" onclick="openLightboxDirect('https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik')">
                     <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Utama">
                     <div class="swipe-card-caption">Pernikahan Kami (1/3) — Geser ➔</div>
@@ -585,129 +583,129 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Ucapan / Doa</label>
-                    <textarea id="inputUcapan" rows="3" required></textarea>
+                    <label>Berikan Ucapan & Doa</label>
+                    <textarea id="inputUcapan" rows="3" placeholder="Tulis ucapan dan doa restu..." required></textarea>
                 </div>
-                <button type="submit" class="btn-gold btn-block">
-                    <i class="fas fa-paper-plane"></i> Kirim Ucapan
-                </button>
+                <button type="submit" class="btn-gold btn-block">Kirim Konfirmasi</button>
             </form>
-            <div id="status" style="margin-top:8px; color:#fef3c7; font-weight:600; font-size:0.9rem;"></div>
-            
-            <div style="margin-top:18px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                    <h3 style="color:#fef3c7; font-size:0.95rem;">Daftar Ucapan</h3>
-                    <select id="filterUcapan" onchange="muatUcapan()" style="padding:4px 8px; border-radius:6px; background:#111; color:#fff; border:1px solid #d97706; font-size:0.75rem;">
-                        <option value="semua">Semua Ucapan</option>
-                        <option value="Hadir">Hadir Saja</option>
-                    </select>
+
+            <div style="margin-top: 20px; text-align: left;">
+                <h3 style="font-size: 1rem; color: #fef3c7; margin-bottom: 10px;">Daftar Ucapan Tamu</h3>
+                <div id="ucapanList" style="max-height: 250px; overflow-y: auto; padding-right: 4px;">
+                    <!-- Daftar ucapan masuk via JS -->
                 </div>
-                <div id="daftarUcapan" style="max-height:220px; overflow-y:auto; text-align:left;">Belum ada ucapan.</div>
             </div>
         </section>
 
-        <!-- BAGIKAN & GENERATOR LINK TAMU OTOMATIS -->
-        <section class="section-card fade-up" style="text-align:center;">
+        <!-- GENERATOR LINK TAMU -->
+        <section class="section-card fade-up">
             <div class="section-title-wrapper">
-                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Bagikan Undangan</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Buat Link Undangan</h2>
             </div>
-            <p style="font-size:0.8rem; color:#e7d8c9; margin-bottom:10px;">Sebarkan kebahagiaan ini</p>
-            
             <div class="generator-box">
-                <label style="font-size:0.75rem; color:#fef3c7; display:block; margin-bottom:4px; font-weight:600;">Buat Link Khusus Nama Tamu:</label>
-                <div style="display:flex; gap:6px;">
-                    <input type="text" id="inputNamaTamuGen" placeholder="Contoh: Budi & Keluarga" style="padding:6px; font-size:0.8rem; border-radius:6px; border:1px solid #d97706; background:#000; color:#fff; flex:1;">
-                    <button onclick="generateLinkTamu()" style="background:#d97706; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; cursor:pointer;">Buat</button>
+                <div class="form-group" style="margin-bottom:8px;">
+                    <label style="font-size:0.75rem;">Nama Tamu Undangan:</label>
+                    <input type="text" id="genNama" placeholder="Contoh: Budi & Keluarga" style="padding:8px; font-size:14px;">
                 </div>
-                <div id="resultLinkContainer" class="hide" style="margin-top:8px;">
-                    <input type="text" id="outputLinkTamu" readonly style="padding:5px; font-size:0.75rem; width:100%; border-radius:4px; background:#111; color:#fef3c7; border:1px solid #444;">
-                    <button onclick="copyGeneratedLink()" style="margin-top:4px; width:100%; background:transparent; border:1px solid #d97706; color:#fef3c7; padding:4px; border-radius:4px; font-size:0.75rem; cursor:pointer;"><i class="far fa-copy"></i> Salin Link Khusus Ini</button>
-                </div>
-            </div>
-
-            <div class="share-buttons" style="margin-top:14px;">
-                <button class="btn-share btn-whatsapp" onclick="shareWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </button>
-                <button class="btn-share btn-copy" onclick="copyLink()">
-                    <i class="fas fa-link"></i> Salin Link Utama
-                </button>
+                <button type="button" class="btn-gold btn-block" style="padding:9px; font-size:0.85rem;" onclick="generateLink()">Buat & Salin Link</button>
             </div>
         </section>
 
         <!-- FOOTER -->
-        <footer class="section-card footer fade-up">
-            <p>Terima Kasih Atas Doa & Restu Anda</p>
-        </footer>
+        <div class="footer">
+            <p class="font-title gold-foil-text" style="font-size:1.1rem; margin-bottom:6px;">Hanif & Asri</p>
+            <p style="font-size:0.75rem; color:#e7d8c9; margin-bottom:12px;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir memberikan doa restu.</p>
+            <div class="share-buttons">
+                <button class="btn-share btn-whatsapp" onclick="shareWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Bagikan
+                </button>
+                <button class="btn-share btn-copy" onclick="copyLink()">
+                    <i class="far fa-copy"></i> Salin Link
+                </button>
+            </div>
+        </div>
 
-    </div> <!-- Tutup mainContent -->
-
-    <!-- LIGHTBOX GALERI -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <button class="lightbox-close">&times;</button>
-        <img id="lightboxImg" src="" alt="Zoom">
     </div>
 
-    <!-- SCRIPT JAVASCRIPT -->
-    <script>
-        // Memuat elemen saat halaman siap
-        document.addEventListener("DOMContentLoaded", function() {
-            const loadingScreen = document.getElementById('loading-screen');
-            if (loadingScreen) {
-                setTimeout(() => {
-                    loadingScreen.classList.add('hide');
-                }, 800);
-            }
-        });
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close">&times;</button>
+        <img id="lightboxImg" src="" alt="Zoom Foto">
+    </div>
 
-        // Ambil nama tamu dari URL (contoh: ?to=Budi)
-        const urlParams = new URLSearchParams(window.location.search);
-        const tamu = urlParams.get('to');
-        if (tamu) {
-            document.getElementById('namaTamu').innerText = decodeURIComponent(tamu);
-            document.getElementById('inputNama').value = decodeURIComponent(tamu);
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Partikel Background
+        const particleContainer = document.getElementById('particleContainer');
+        for (let i = 0; i < 25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 6 + 6) + 's';
+            p.style.animationDelay = (Math.random() * 5) + 's';
+            particleContainer.appendChild(p);
         }
 
-        // Tombol Buka Undangan
-        const btnOpen = document.getElementById('btnOpen');
+        // 2. Ambil Nama Tamu dari URL (Parameter ?to=...)
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('to');
+        const namaTamuEl = document.getElementById('namaTamu');
+        const inputNamaEl = document.getElementById('inputNama');
+        if (guestName) {
+            const decodedName = decodeURIComponent(guestName);
+            namaTamuEl.innerText = decodedName;
+            inputNamaEl.value = decodedName;
+        } else {
+            namaTamuEl.innerText = "Tamu Undangan";
+        }
+
+        // 3. Tombol Buka Undangan & Musik
+        const loadingScreen = document.getElementById('loading-screen');
         const cover = document.getElementById('cover');
         const mainContent = document.getElementById('mainContent');
+        const btnOpen = document.getElementById('btnOpen');
         const bgMusic = document.getElementById('bgMusic');
         const musicToggle = document.getElementById('musicToggle');
 
-        btnOpen.addEventListener('click', () => {
-            cover.classList.add('fade-out');
+        window.addEventListener('load', () => {
             setTimeout(() => {
-                cover.style.display = 'none';
-            }, 650);
-            mainContent.classList.remove('hide');
-            
-            // Putar Musik
-            bgMusic.play().then(() => {
-                musicToggle.classList.remove('hide');
-                musicToggle.classList.add('playing');
-            }).catch(e => {
-                console.log("Autoplay dicegah oleh browser");
-            });
+                loadingScreen.classList.add('hide');
+            }, 500);
         });
 
-        // Kontrol Musik
-        let isPlaying = true;
+        let isPlaying = false;
+        btnOpen.addEventListener('click', () => {
+            cover.classList.add('fade-out');
+            mainContent.classList.remove('hide');
+            setTimeout(() => cover.remove(), 700);
+
+            // Putar Musik
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicToggle.classList.remove('hide');
+                musicToggle.classList.add('playing');
+            }).catch(e => console.log("Autoplay blocked:", e));
+        });
+
         musicToggle.addEventListener('click', () => {
             if (isPlaying) {
                 bgMusic.pause();
                 musicToggle.classList.remove('playing');
-                musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+                musicToggle.innerHTML = '<i class="fas fa-music" style="opacity:0.5"></i>';
+                isPlaying = false;
             } else {
                 bgMusic.play();
                 musicToggle.classList.add('playing');
                 musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                isPlaying = true;
             }
-            isPlaying = !isPlaying;
         });
 
-        // Animasi Scroll (Fade Up)
-        const observerOptions = { threshold: 0.1 };
+        // 4. Scroll Intersection Observer untuk Animasi Fade-Up & Typing
+        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -716,220 +714,186 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-up').forEach(el => {
+        document.querySelectorAll('.fade-up, .couple-card-glass').forEach(el => {
             observer.observe(el);
         });
 
-        // Countdown Timer (Target: 21 Desember 2026 08:00:00)
-        const countdownDate = new Date("Dec 21, 2026 08:00:00").getTime();
-        const x = setInterval(() => {
+        // 5. Hitung Mundur (Countdown)
+        const weddingDate = new Date("Dec 21, 2026 08:00:00").getTime();
+        function updateCountdown() {
             const now = new Date().getTime();
-            const distance = countdownDate - now;
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.querySelector(".countdown-grid").innerHTML = "<h3 style='color:#fef3c7;'>Acara Sedang Berlangsung</h3>";
-            }
-        }, 1000);
-
-        // FITUR SWIPE STACK GALLERY (FOTO TUMPUK SEPERTI KARTU REMI)
+        // 6. Galeri Swipe / Geser Kartu Sederhana
         const swipeStack = document.getElementById('swipeStack');
         const cards = swipeStack.querySelectorAll('.swipe-card');
-        
-        cards.forEach((card, index) => {
+
+        cards.forEach((card) => {
             let startX = 0;
             let currentX = 0;
-            let isDragging = false;
 
             card.addEventListener('pointerdown', (e) => {
-                if (card !== swipeStack.lastElementChild) return;
-                isDragging = true;
                 startX = e.clientX;
                 card.setPointerCapture(e.pointerId);
             });
 
             card.addEventListener('pointermove', (e) => {
-                if (!isDragging) return;
+                if (!startX) return;
                 currentX = e.clientX - startX;
-                card.style.transform = `translateX(${currentX}px) rotate(${currentX * 0.05}deg)`;
+                if (Math.abs(currentX) > 20) {
+                    card.style.transform = `translateX(${currentX}px) rotate(${currentX * 0.05}deg)`;
+                }
             });
 
-            card.addEventListener('pointerup', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                
-                if (Math.abs(currentX) > 100) {
+            card.addEventListener('pointerup', () => {
+                if (Math.abs(currentX) > 80) {
                     card.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
                     card.style.transform = `translateX(${currentX > 0 ? 400 : -400}px) rotate(${currentX > 0 ? 30 : -30}deg)`;
                     card.style.opacity = '0';
-                    
                     setTimeout(() => {
-                        card.style.transition = 'none';
-                        card.style.transform = '';
-                        card.style.opacity = '1';
+                        card.style.zIndex = -1;
                         swipeStack.prepend(card);
-                        updateStackOrder();
+                        card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+                        card.style.transform = 'scale(1) translateY(0)';
+                        card.style.opacity = '1';
+                        
+                        const remainingCards = swipeStack.querySelectorAll('.swipe-card');
+                        remainingCards.forEach((c, idx) => {
+                            c.style.zIndex = remainingCards.length - idx;
+                            if (idx === 1) c.style.transform = 'scale(0.96) translateY(8px)';
+                            if (idx === 2) c.style.transform = 'scale(0.92) translateY(16px)';
+                        });
                     }, 400);
                 } else {
-                    card.style.transition = 'transform 0.3s ease';
-                    card.style.transform = '';
+                    card.style.transform = 'scale(1) translateY(0)';
                 }
+                startX = 0;
                 currentX = 0;
             });
         });
 
-        function updateStackOrder() {
-            const currentCards = swipeStack.querySelectorAll('.swipe-card');
-            currentCards.forEach((c, i) => {
-                c.style.zIndex = i + 1;
-                if (i === 0) {
-                    c.style.transform = 'scale(0.92) translateY(16px)';
-                } else if (i === 1) {
-                    c.style.transform = 'scale(0.96) translateY(8px)';
-                } else {
-                    c.style.transform = 'scale(1) translateY(0)';
-                }
-            });
-        }
-
+        // Lightbox Zoom
         function openLightboxDirect(imgSrc) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             lightboxImg.src = imgSrc;
             lightbox.classList.add('active');
         }
-
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }
 
-        // Salin Rekening
-        function copyRekening(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Nomor rekening berhasil disalin: " + text);
+        // 7. Salin Rekening
+        function copyRekening(rekNumber) {
+            navigator.clipboard.writeText(rekNumber).then(() => {
+                alert("Nomor rekening berhasil disalin: " + rekNumber);
             });
         }
 
-        // Simpan ke Kalender
+        // 8. Simpan ke Kalender (.ics)
         function addToCalendar() {
             const title = "Pernikahan Hanif & Asri";
-            const details = "Akad Nikah Hanif & Asri";
-            const location = "Indonesia";
+            const description = "Akad & Resepsi Pernikahan Hanif Abubakar & Asriwati.";
+            const location = "Lokasi Pernikahan";
             const startTime = "20261221T010000Z";
-            const endTime = "20261221T070000Z";
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startTime}/${endTime}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
-            window.open(googleCalendarUrl, '_blank');
+            const endTime = "20261221T080000Z";
+
+            const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:${title}\nDESCRIPTION:${description}\nLOCATION:${location}\nDTSTART:${startTime}\nDTEND:${endTime}\nEND:VEVENT\nEND:VCALENDAR`;
+            
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Pernikahan_Hanif_Asri.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        // Kirim RSVP & Ucapan
+        // 9. RSVP & Ucapan Interaktif
         const rsvpForm = document.getElementById('rsvpForm');
-        rsvpForm.addEventListener('submit', function(e) {
+        const ucapanList = document.getElementById('ucapanList');
+
+        const sampleUcapan = [
+            { nama: "Rian Pratama", status: "Hadir", stiker: "💍", pesan: "Barakallahu lakuma wa baraka 'alaykuma. Selamat menempuh hidup baru Hanif & Asri!" },
+            { nama: "Siti Aminah", status: "Hadir", stiker: "❤️", pesan: "Semoga menjadi keluarga sakinah, mawaddah, warahmah. Bahagia selalu!" }
+        ];
+
+        function renderUcapan() {
+            ucapanList.innerHTML = "";
+            sampleUcapan.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'ucapan-item';
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                        <span style="font-weight:600; font-size:0.85rem; color:#fef3c7;">${item.nama} ${item.stiker}</span>
+                        <span class="${item.status === 'Hadir' ? 'badge-hadir' : 'badge-tidak'}">${item.status}</span>
+                    </div>
+                    <p style="font-size:0.78rem; color:#e7d8c9;">${item.pesan}</p>
+                `;
+                ucapanList.appendChild(div);
+            });
+        }
+        renderUcapan();
+
+        rsvpForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const nama = document.getElementById('inputNama').value;
-            const kehadiran = document.getElementById('inputKehadiran').value;
+            const status = document.getElementById('inputKehadiran').value;
             const stiker = document.getElementById('inputStiker').value;
-            const ucapan = document.getElementById('inputUcapan').value;
+            const pesan = document.getElementById('inputUcapan').value;
 
-            const newUcapan = { nama, kehadiran, stiker, ucapan, waktu: new Date().toLocaleDateString('id-ID') };
-            
-            let dataUcapan = JSON.parse(localStorage.getItem('daftaranUcapanHanifAsri')) || [];
-            dataUcapan.unshift(newUcapan);
-            localStorage.setItem('daftaranUcapanHanifAsri', JSON.stringify(dataUcapan));
-
-            document.getElementById('status').innerText = "Ucapan berhasil dikirim!";
+            sampleUcapan.unshift({ nama, status, stiker, pesan });
+            renderUcapan();
             rsvpForm.reset();
-            muatUcapan();
-            setTimeout(() => { document.getElementById('status').innerText = ""; }, 3000);
+            if (guestName) document.getElementById('inputNama').value = decodeURIComponent(guestName);
+            alert("Konfirmasi kehadiran dan ucapan berhasil dikirim. Terima kasih!");
         });
 
-        // Muat Ucapan
-        function muatUcapan() {
-            const container = document.getElementById('daftarUcapan');
-            const filter = document.getElementById('filterUcapan').value;
-            let dataUcapan = JSON.parse(localStorage.getItem('daftaranUcapanHanifAsri')) || [];
-
-            if (filter === 'Hadir') {
-                dataUcapan = dataUcapan.filter(item => item.kehadiran === 'Hadir');
-            }
-
-            if (dataUcapan.length === 0) {
-                container.innerHTML = "<p style='font-size:0.8rem; color:#e7d8c9; text-align:center;'>Belum ada ucapan.</p>";
-                return;
-            }
-
-            let html = '';
-            dataUcapan.forEach(item => {
-                const badgeClass = item.kehadiran === 'Hadir' ? 'badge-hadir' : 'badge-tidak';
-                html += `
-                    <div class="ucapan-item">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
-                            <strong style='font-size:0.85rem; color:#fef3c7;'>${item.stiker} ${item.nama}</strong>
-                            <span class="${badgeClass}">${item.kehadiran}</span>
-                        </div>
-                        <p style='font-size:0.8rem; color:#e0e0e0; margin-top:2px;'>${item.ucapan}</p>
-                        <small style='font-size:0.7rem; color:#aaa;'>${item.waktu}</small>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-        muatUcapan();
-
-        // Generator Link Tamu Khusus
-        function generateLinkTamu() {
-            const namaTamu = document.getElementById('inputNamaTamuGen').value.trim();
-            if (!namaTamu) {
+        // 10. Generator Link Tamu & Share
+        function generateLink() {
+            const genNama = document.getElementById('genNama').value.trim();
+            if (!genNama) {
                 alert("Silakan masukkan nama tamu terlebih dahulu.");
                 return;
             }
             const baseUrl = window.location.href.split('?')[0];
-            const generatedLink = `${baseUrl}?to=${encodeURIComponent(namaTamu)}`;
+            const generatedUrl = `${baseUrl}?to=${encodeURIComponent(genNama)}`;
             
-            document.getElementById('outputLinkTamu').value = generatedLink;
-            document.getElementById('resultLinkContainer').classList.remove('hide');
-        }
-
-        function copyGeneratedLink() {
-            const copyText = document.getElementById('outputLinkTamu');
-            copyText.select();
-            navigator.clipboard.writeText(copyText.value).then(() => {
-                alert("Link khusus tamu berhasil disalin!");
+            navigator.clipboard.writeText(generatedUrl).then(() => {
+                alert(`Link untuk "${genNama}" berhasil disalin:\n\n${generatedUrl}`);
             });
         }
 
         function shareWhatsApp() {
-            const text = "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami. Berikut tautan undangan:\n\n" + window.location.href;
+            const text = "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami, Hanif & Asri.\n\nDetail undangan dapat dilihat melalui tautan berikut:\n" + window.location.href;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
-                alert("Link utama undangan berhasil disalin!");
+                alert("Link undangan berhasil disalin ke clipboard!");
             });
-        }
-
-        // Efek Partikel Background
-        const particleContainer = document.getElementById('particleContainer');
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            const size = Math.random() * 4 + 2;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.animationDuration = `${Math.random() * 6 + 6}s`;
-            particle.style.animationDelay = `${Math.random() * 5}s`;
-            particleContainer.appendChild(particle);
         }
     </script>
 </body>
