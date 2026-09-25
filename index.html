@@ -584,47 +584,16 @@
                 </div>
                 <div class="form-group">
                     <label>Berikan Ucapan & Doa</label>
-                    <textarea id="inputUcapan" rows="3" placeholder="Tulis ucapan dan doa restu..." required></textarea>
+                    <textarea id="inputUcapan" rows="3" required placeholder="Tulis ucapan dan doa restu..."></textarea>
                 </div>
-                <button type="submit" class="btn-gold btn-block">Kirim Konfirmasi</button>
+                <button type="submit" class="btn-gold btn-block">Kirim Ucapan</button>
             </form>
-
-            <div style="margin-top: 20px; text-align: left;">
-                <h3 style="font-size: 1rem; color: #fef3c7; margin-bottom: 10px;">Daftar Ucapan Tamu</h3>
-                <div id="ucapanList" style="max-height: 250px; overflow-y: auto; padding-right: 4px;">
-                    <!-- Daftar ucapan masuk via JS -->
-                </div>
-            </div>
         </section>
 
-        <!-- GENERATOR LINK TAMU -->
-        <section class="section-card fade-up">
-            <div class="section-title-wrapper">
-                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Buat Link Undangan</h2>
-            </div>
-            <div class="generator-box">
-                <div class="form-group" style="margin-bottom:8px;">
-                    <label style="font-size:0.75rem;">Nama Tamu Undangan:</label>
-                    <input type="text" id="genNama" placeholder="Contoh: Budi & Keluarga" style="padding:8px; font-size:14px;">
-                </div>
-                <button type="button" class="btn-gold btn-block" style="padding:9px; font-size:0.85rem;" onclick="generateLink()">Buat & Salin Link</button>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
         <div class="footer">
             <p class="font-title gold-foil-text" style="font-size:1.1rem; margin-bottom:6px;">Hanif & Asri</p>
-            <p style="font-size:0.75rem; color:#e7d8c9; margin-bottom:12px;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir memberikan doa restu.</p>
-            <div class="share-buttons">
-                <button class="btn-share btn-whatsapp" onclick="shareWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> Bagikan
-                </button>
-                <button class="btn-share btn-copy" onclick="copyLink()">
-                    <i class="far fa-copy"></i> Salin Link
-                </button>
-            </div>
+            <p style="font-size:0.75rem; color:#e7d8c9;">Terima kasih atas doa & kehadiran Bapak/Ibu/Saudara/i sekalian.</p>
         </div>
-
     </div>
 
     <!-- LIGHTBOX -->
@@ -633,267 +602,136 @@
         <img id="lightboxImg" src="" alt="Zoom Foto">
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- SCRIPT JAVASCRIPT LENGKAP -->
     <script>
-        // 1. Partikel Background
-        const particleContainer = document.getElementById('particleContainer');
-        for (let i = 0; i < 25; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const size = Math.random() * 4 + 2;
-            p.style.width = size + 'px';
-            p.style.height = size + 'px';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDuration = (Math.random() * 6 + 6) + 's';
-            p.style.animationDelay = (Math.random() * 5) + 's';
-            particleContainer.appendChild(p);
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            // 1. Observer untuk efek fade-up umum pada kartu
+            const fadeElements = document.querySelectorAll(".fade-up");
+            const fadeObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
 
-        // 2. Ambil Nama Tamu dari URL (Parameter ?to=...)
-        const urlParams = new URLSearchParams(window.location.search);
-        const guestName = urlParams.get('to');
-        const namaTamuEl = document.getElementById('namaTamu');
-        const inputNamaEl = document.getElementById('inputNama');
-        if (guestName) {
-            const decodedName = decodeURIComponent(guestName);
-            namaTamuEl.innerText = decodedName;
-            inputNamaEl.value = decodedName;
-        } else {
-            namaTamuEl.innerText = "Tamu Undangan";
-        }
+            fadeElements.forEach(el => fadeObserver.observe(el));
 
-        // 3. Tombol Buka Undangan & Musik
-        const loadingScreen = document.getElementById('loading-screen');
-        const cover = document.getElementById('cover');
-        const mainContent = document.getElementById('mainContent');
-        const btnOpen = document.getElementById('btnOpen');
-        const bgMusic = document.getElementById('bgMusic');
-        const musicToggle = document.getElementById('musicToggle');
+            // 2. Observer khusus untuk kartu mempelai agar efek mengetik (typing) terpicu pas di layar
+            const coupleCards = document.querySelectorAll(".couple-card-glass");
+            const coupleObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
 
-        window.addEventListener('load', () => {
+            coupleCards.forEach(card => coupleObserver.observe(card));
+
+            // Setup tombol buka undangan & musik
+            const btnOpen = document.getElementById("btnOpen");
+            const cover = document.getElementById("cover");
+            const mainContent = document.getElementById("mainContent");
+            const loadingScreen = document.getElementById("loading-screen");
+            const bgMusic = document.getElementById("bgMusic");
+            const musicToggle = document.getElementById("musicToggle");
+
+            // Hilangkan loading screen setelah siap
             setTimeout(() => {
-                loadingScreen.classList.add('hide');
+                loadingScreen.classList.add("hide");
             }, 500);
-        });
 
-        let isPlaying = false;
-        btnOpen.addEventListener('click', () => {
-            cover.classList.add('fade-out');
-            mainContent.classList.remove('hide');
-            setTimeout(() => cover.remove(), 700);
-
-            // Putar Musik
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                musicToggle.classList.remove('hide');
-                musicToggle.classList.add('playing');
-            }).catch(e => console.log("Autoplay blocked:", e));
-        });
-
-        musicToggle.addEventListener('click', () => {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicToggle.classList.remove('playing');
-                musicToggle.innerHTML = '<i class="fas fa-music" style="opacity:0.5"></i>';
-                isPlaying = false;
-            } else {
-                bgMusic.play();
-                musicToggle.classList.add('playing');
-                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-                isPlaying = true;
-            }
-        });
-
-        // 4. Scroll Intersection Observer untuk Animasi Fade-Up & Typing
-        const observerOptions = { threshold: 0.15 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up, .couple-card-glass').forEach(el => {
-            observer.observe(el);
-        });
-
-        // 5. Hitung Mundur (Countdown)
-        const weddingDate = new Date("Dec 21, 2026 08:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            if (distance < 0) {
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                return;
+            // Ambil parameter nama tamu dari URL (contoh: ?to=Bapak%20Budi)
+            const urlParams = new URLSearchParams(window.location.search);
+            const tamuParam = urlParams.get("to");
+            if (tamuParam) {
+                document.getElementById("namaTamu").textContent = decodeURIComponent(tamuParam);
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // 6. Galeri Swipe / Geser Kartu Sederhana
-        const swipeStack = document.getElementById('swipeStack');
-        const cards = swipeStack.querySelectorAll('.swipe-card');
-
-        cards.forEach((card) => {
-            let startX = 0;
-            let currentX = 0;
-
-            card.addEventListener('pointerdown', (e) => {
-                startX = e.clientX;
-                card.setPointerCapture(e.pointerId);
+            btnOpen.addEventListener("click", function() {
+                cover.classList.add("fade-out");
+                mainContent.classList.remove("hide");
+                bgMusic.play().catch(() => {});
+                musicToggle.classList.remove("hide");
+                musicToggle.classList.add("playing");
             });
 
-            card.addEventListener('pointermove', (e) => {
-                if (!startX) return;
-                currentX = e.clientX - startX;
-                if (Math.abs(currentX) > 20) {
-                    card.style.transform = `translateX(${currentX}px) rotate(${currentX * 0.05}deg)`;
-                }
-            });
-
-            card.addEventListener('pointerup', () => {
-                if (Math.abs(currentX) > 80) {
-                    card.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-                    card.style.transform = `translateX(${currentX > 0 ? 400 : -400}px) rotate(${currentX > 0 ? 30 : -30}deg)`;
-                    card.style.opacity = '0';
-                    setTimeout(() => {
-                        card.style.zIndex = -1;
-                        swipeStack.prepend(card);
-                        card.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
-                        card.style.transform = 'scale(1) translateY(0)';
-                        card.style.opacity = '1';
-                        
-                        const remainingCards = swipeStack.querySelectorAll('.swipe-card');
-                        remainingCards.forEach((c, idx) => {
-                            c.style.zIndex = remainingCards.length - idx;
-                            if (idx === 1) c.style.transform = 'scale(0.96) translateY(8px)';
-                            if (idx === 2) c.style.transform = 'scale(0.92) translateY(16px)';
-                        });
-                    }, 400);
+            musicToggle.addEventListener("click", function() {
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    musicToggle.classList.add("playing");
+                    musicToggle.innerHTML = '<i class="fas fa-music"></i>';
                 } else {
-                    card.style.transform = 'scale(1) translateY(0)';
+                    bgMusic.pause();
+                    musicToggle.classList.remove("playing");
+                    musicToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
                 }
-                startX = 0;
-                currentX = 0;
             });
+
+            // Countdown timer menuju 21 Desember 2026
+            const weddingDate = new Date("December 21, 2026 08:00:00").getTime();
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+
+                if (distance < 0) {
+                    document.getElementById("days").innerText = "00";
+                    document.getElementById("hours").innerText = "00";
+                    document.getElementById("minutes").innerText = "00";
+                    document.getElementById("seconds").innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            }
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
         });
 
-        // Lightbox Zoom
+        // Fungsi Salin Rekening
+        function copyRekening(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Nomor rekening berhasil disalin: " + text);
+            }).catch(err => {
+                console.error("Gagal menyalin teks: ", err);
+            });
+        }
+
+        // Lightbox Galeri
         function openLightboxDirect(imgSrc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightboxImg");
             lightboxImg.src = imgSrc;
-            lightbox.classList.add('active');
+            lightbox.classList.add("active");
         }
         function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById("lightbox").classList.remove("active");
         }
 
-        // 7. Salin Rekening
-        function copyRekening(rekNumber) {
-            navigator.clipboard.writeText(rekNumber).then(() => {
-                alert("Nomor rekening berhasil disalin: " + rekNumber);
-            });
-        }
-
-        // 8. Simpan ke Kalender (.ics)
+        // Simpan ke Kalender sederhana
         function addToCalendar() {
             const title = "Pernikahan Hanif & Asri";
-            const description = "Akad & Resepsi Pernikahan Hanif Abubakar & Asriwati.";
+            const details = "Acara Resepsi dan Akad Nikah Hanif & Asri";
             const location = "Lokasi Pernikahan";
             const startTime = "20261221T010000Z";
-            const endTime = "20261221T080000Z";
-
-            const icsContent = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:${title}\nDESCRIPTION:${description}\nLOCATION:${location}\nDTSTART:${startTime}\nDTEND:${endTime}\nEND:VEVENT\nEND:VCALENDAR`;
+            const endTime = "20261221T100000Z";
             
-            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.setAttribute('download', 'Pernikahan_Hanif_Asri.ics');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // 9. RSVP & Ucapan Interaktif
-        const rsvpForm = document.getElementById('rsvpForm');
-        const ucapanList = document.getElementById('ucapanList');
-
-        const sampleUcapan = [
-            { nama: "Rian Pratama", status: "Hadir", stiker: "💍", pesan: "Barakallahu lakuma wa baraka 'alaykuma. Selamat menempuh hidup baru Hanif & Asri!" },
-            { nama: "Siti Aminah", status: "Hadir", stiker: "❤️", pesan: "Semoga menjadi keluarga sakinah, mawaddah, warahmah. Bahagia selalu!" }
-        ];
-
-        function renderUcapan() {
-            ucapanList.innerHTML = "";
-            sampleUcapan.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'ucapan-item';
-                div.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                        <span style="font-weight:600; font-size:0.85rem; color:#fef3c7;">${item.nama} ${item.stiker}</span>
-                        <span class="${item.status === 'Hadir' ? 'badge-hadir' : 'badge-tidak'}">${item.status}</span>
-                    </div>
-                    <p style="font-size:0.78rem; color:#e7d8c9;">${item.pesan}</p>
-                `;
-                ucapanList.appendChild(div);
-            });
-        }
-        renderUcapan();
-
-        rsvpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const nama = document.getElementById('inputNama').value;
-            const status = document.getElementById('inputKehadiran').value;
-            const stiker = document.getElementById('inputStiker').value;
-            const pesan = document.getElementById('inputUcapan').value;
-
-            sampleUcapan.unshift({ nama, status, stiker, pesan });
-            renderUcapan();
-            rsvpForm.reset();
-            if (guestName) document.getElementById('inputNama').value = decodeURIComponent(guestName);
-            alert("Konfirmasi kehadiran dan ucapan berhasil dikirim. Terima kasih!");
-        });
-
-        // 10. Generator Link Tamu & Share
-        function generateLink() {
-            const genNama = document.getElementById('genNama').value.trim();
-            if (!genNama) {
-                alert("Silakan masukkan nama tamu terlebih dahulu.");
-                return;
-            }
-            const baseUrl = window.location.href.split('?')[0];
-            const generatedUrl = `${baseUrl}?to=${encodeURIComponent(genNama)}`;
-            
-            navigator.clipboard.writeText(generatedUrl).then(() => {
-                alert(`Link untuk "${genNama}" berhasil disalin:\n\n${generatedUrl}`);
-            });
-        }
-
-        function shareWhatsApp() {
-            const text = "Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami, Hanif & Asri.\n\nDetail undangan dapat dilihat melalui tautan berikut:\n" + window.location.href;
-            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                alert("Link undangan berhasil disalin ke clipboard!");
-            });
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startTime}/${endTime}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+            window.open(googleCalendarUrl, '_blank');
         }
     </script>
 </body>
