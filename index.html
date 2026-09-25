@@ -28,6 +28,19 @@
         .font-title { font-family: 'Cinzel Decorative', serif; }
         .hide { display: none !important; }
 
+        /* EFEK KILAU EMAS / METALLIC FOIL PADA TEKS (MOHON DIINGAT) */
+        .gold-foil-text {
+            background: linear-gradient(135deg, #fef3c7 0%, #d97706 25%, #fffbeb 50%, #b45309 75%, #fef3c7 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shineGold 4s linear infinite;
+        }
+        @keyframes shineGold {
+            to { background-position: 200% center; }
+        }
+
         /* EFEK PARTIKEL / CAHAYA LEMBUT DI BACKGROUND */
         .particle-bg {
             position: fixed;
@@ -66,7 +79,7 @@
         #loading-screen.hide { opacity: 0; visibility: hidden; }
         .loader-ring { width: 48px; height: 48px; border: 3px solid rgba(217,119,6,0.25); border-top-color: #d97706; border-radius: 50%; animation: spin 0.9s linear infinite; margin-bottom: 18px; }
         .loader-text { color: #fef3c7; font-size: 0.85rem; letter-spacing: 1.5px; }
-        .loader-names { font-family: 'Cinzel Decorative', serif; color: #d97706; font-size: 1.25rem; margin-top: 6px; }
+        .loader-names { font-family: 'Cinzel Decorative', serif; font-size: 1.25rem; margin-top: 6px; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* COVER */
@@ -78,7 +91,7 @@
         .btn-gold { background: linear-gradient(135deg, #d97706, #78350f); color: #fff; font-weight: 700; border: 1px solid #fef3c7; padding: 12px 26px; font-size: 0.95rem; border-radius: 30px; cursor: pointer; display: inline-block; transition: transform 0.2s ease, opacity 0.2s ease; }
         .btn-gold:active { transform: scale(0.96); }
 
-        /* KONTINUE & KARTU UTAMA DENGAN ORNAMEN SUDUT BATIK (MENGGUNAKAN SIMBOL KAWUNG/BATIK '❖') */
+        /* KONTINUE & KARTU UTAMA DENGAN ORNAMEN SUDUT BATIK ('❖') */
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
         .section-card { 
             margin: 40px 14px; 
@@ -123,7 +136,7 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.9);
         }
         .sec-hero.section-card::before, .sec-hero.section-card::after { display: none; }
-        .sec-hero h1 { color: #f59e0b; font-size: 2.1rem; margin: 6px 0; letter-spacing: 1px; }
+        .sec-hero h1 { font-size: 2.1rem; margin: 6px 0; letter-spacing: 1px; }
         
         .scroll-down-hint {
             margin-top: 24px;
@@ -142,17 +155,32 @@
         /* KOMPONEN LAINNYA */
         .couple-card-glass { background: rgba(255,255,255,0.08); border: 1px solid rgba(217,119,6,0.35); padding: 18px; border-radius: 14px; width: 100%; }
         .couple-avatar-glass { width: 56px; height: 56px; margin: 0 auto 8px; border-radius: 50%; border: 2px solid #d97706; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fef3c7; }
+        
+        /* COUNTDOWN (NOMOR 6) - ANIMASI DENYUT HIDUP */
         .countdown-grid { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
         .time-box { background: rgba(0,0,0,0.5); border: 1px solid #d97706; border-radius: 10px; padding: 10px 6px; min-width: 60px; text-align: center; }
         .time-box span { font-size: 1.3rem; font-weight: 700; color: #fef3c7; display: block; }
         .time-box p { font-size: 0.68rem; color: #e7d8c9; }
+        .pulse-live { animation: pulseAnim 1s infinite alternate; }
+        @keyframes pulseAnim {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.06); }
+        }
+
         .event-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(217,119,6,0.28); border-radius: 12px; padding: 16px; margin-bottom: 12px; text-align: center; }
         .bank-card { background: linear-gradient(135deg, rgba(34,30,26,0.9), rgba(18,18,18,0.9)); border: 2px solid #d97706; border-radius: 14px; padding: 20px 14px; text-align: center; }
+        
+        /* RSVP & UCAPAN (NOMOR 10) DENGAN STIKER REAKSI & FILTER */
         .rsvp-form { text-align: left; background: rgba(255,255,255,0.06); padding: 16px; border-radius: 12px; border: 1px solid rgba(217,119,6,0.28); }
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; font-size: 0.8rem; margin-bottom: 4px; color: #fef3c7; font-weight: 600; }
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(217,119,6,0.35); background: rgba(0,0,0,0.35); color: #fff; font-size: 16px; }
         .form-group select option { color: #000; }
+        
+        .reaction-picker { display: flex; gap: 8px; margin-top: 6px; }
+        .reaction-option { background: rgba(0,0,0,0.4); border: 1px solid rgba(217,119,6,0.3); border-radius: 20px; padding: 4px 10px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .reaction-option.selected { border-color: #fef3c7; background: rgba(217,119,6,0.35); transform: scale(1.05); }
+
         .ucapan-item { background: rgba(255,255,255,0.06); border-left: 3px solid #d97706; padding: 10px; border-radius: 8px; margin-bottom: 8px; text-align: left; }
         .btn-block { width: 100%; }
         .music-btn { position: fixed; bottom: 16px; right: 14px; z-index: 999; width: 42px; height: 42px; border-radius: 50%; background: #d97706; color: #fff; border: 2px solid #fef3c7; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
@@ -161,40 +189,46 @@
         .badge-tidak { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; margin-bottom: 40px; }
         
-        /* LOVE STORY - STYLE KARTU STACK DENGAN EFEK ANIMASI */
-        .story-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
-        .story-card-item { 
-            background: rgba(255,255,255,0.06); 
-            border: 1px solid rgba(217,119,6,0.3); 
-            border-radius: 12px; 
-            padding: 14px 16px; 
-            text-align: left; 
-            position: relative;
-        }
-        .story-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-        .story-year { font-size: 0.75rem; color: #fef3c7; font-weight: 700; background: rgba(217,119,6,0.25); padding: 2px 8px; border-radius: 20px; border: 1px solid rgba(217,119,6,0.4); }
-        .story-card-title { font-size: 0.95rem; color: #fff; font-weight: 600; }
-        .story-card-desc { font-size: 0.8rem; color: #e7d8c9; }
+        /* OUR LOVE STORY (NOMOR 5) - TIMELINE VERTIKAL */
+        .timeline-container { position: relative; padding-left: 20px; margin-top: 14px; text-align: left; }
+        .timeline-container::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: rgba(217,119,6,0.4); }
+        .timeline-item { position: relative; margin-bottom: 16px; }
+        .timeline-dot { position: absolute; left: -18px; top: 3px; width: 10px; height: 10px; border-radius: 50%; background: #d97706; border: 2px solid #fef3c7; }
+        .timeline-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(217,119,6,0.3); border-radius: 10px; padding: 12px; }
+        .timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+        .timeline-year { font-size: 0.72rem; color: #fef3c7; font-weight: 700; background: rgba(217,119,6,0.25); padding: 1px 6px; border-radius: 10px; }
+        .timeline-title { font-size: 0.9rem; color: #fff; font-weight: 600; }
+        .timeline-desc { font-size: 0.78rem; color: #e7d8c9; }
 
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-        .gallery-item { aspect-ratio: 1; border-radius: 10px; overflow: hidden; border: 1px solid rgba(217,119,6,0.35); cursor: pointer; }
+        /* GALERI FOTO (NOMOR 7) - TATA LETAK VARIATIF */
+        .gallery-grid-custom { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
+        .gallery-item-featured { grid-column: span 2; aspect-ratio: 16/9; }
+        .gallery-item { border-radius: 10px; overflow: hidden; border: 1px solid rgba(217,119,6,0.35); cursor: pointer; aspect-ratio: 1; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         .gallery-item:hover img { transform: scale(1.05); }
         .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 14px; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 100%; max-height: 78vh; border-radius: 10px; border: 2px solid #d97706; }
         .lightbox-close { position: absolute; top: 12px; right: 14px; font-size: 1.7rem; color: #fff; background: none; border: none; cursor: pointer; z-index: 2001; }
+        
         .map-container { border-radius: 12px; overflow: hidden; margin-top: 12px; border: 1px solid rgba(217,119,6,0.3); }
         .map-container iframe { width: 100%; height: 180px; border: 0; }
         .btn-calendar { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid #d97706; color: #fef3c7; padding: 8px 14px; border-radius: 30px; font-size: 0.82rem; margin-top: 12px; cursor: pointer; }
+        
         .share-buttons { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
         .btn-share { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 30px; font-size: 0.82rem; font-weight: 600; border: none; color: #fff; cursor: pointer; }
         .btn-whatsapp { background: #25D366; }
         .btn-copy { background: transparent; border: 1px solid #d97706; color: #fef3c7; }
-        .ayat-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(217,119,6,0.3); border-radius: 12px; padding: 16px 12px; text-align: center; }
-        .ayat-arab { font-size: 1.1rem; line-height: 1.8; color: #fef3c7; margin-bottom: 10px; font-family: serif; }
-        .ayat-latin { font-size: 0.8rem; color: #e7d8c9; font-style: italic; margin-bottom: 6px; }
-        .ayat-sumber { font-size: 0.75rem; color: #d97706; font-weight: 600; }
+        
+        /* KUTIPAN AYAT (NOMOR 4) - LATAR KLASIK SAKRAL */
+        .ayat-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(217,119,6,0.35); border-radius: 12px; padding: 20px 14px; text-align: center; position: relative; overflow: hidden; }
+        .ayat-box::before { content: '“'; position: absolute; top: -10px; left: 10px; font-size: 5rem; color: rgba(217,119,6,0.12); font-family: serif; pointer-events: none; }
+        .ayat-arab { font-size: 1.15rem; line-height: 1.8; color: #fef3c7; margin-bottom: 12px; font-family: serif; }
+        .ayat-latin { font-size: 0.8rem; color: #e7d8c9; font-style: italic; margin-bottom: 8px; }
+        .ayat-sumber { font-size: 0.75rem; color: #d97706; font-weight: 600; letter-spacing: 1px; }
+
+        /* GENERATOR NAMA TAMU OTOMATIS (NOMOR 11) */
+        .guest-generator-box { background: rgba(255,255,255,0.05); border: 1px dashed #d97706; border-radius: 10px; padding: 12px; margin-top: 12px; }
     </style>
 </head>
 <body>
@@ -216,7 +250,7 @@
     <div id="loading-screen">
         <div class="loader-ring"></div>
         <div class="loader-text">MEMUAT UNDANGAN</div>
-        <div class="loader-names">Hanif & Asri</div>
+        <div class="loader-names gold-foil-text font-title">Hanif & Asri</div>
     </div>
 
     <!-- COVER / HALAMAN PEMBUKA -->
@@ -226,7 +260,7 @@
         <div class="cover-card">
             <div style="color:#d97706; font-size:1.4rem; margin-bottom:4px;">⚜️</div>
             <p style="font-size:0.7rem; letter-spacing:1.5px; color:#e7d8c9;">UNDANGAN PERNIKAHAN</p>
-            <h1 class="font-title" style="font-size:1.6rem; color:#d97706; margin:8px 0 6px;">Hanif & Asri</h1>
+            <h1 class="font-title gold-foil-text" style="font-size:1.6rem; margin:8px 0 6px;">Hanif & Asri</h1>
             <p style="font-size:0.8rem; color:#e0e0e0; margin-bottom:5px;">Kepada Yth.</p>
             <div id="namaTamu" style="background:rgba(255,255,255,0.12); border:1px dashed #d97706; color:#fef3c7; padding:8px; border-radius:10px; font-size:1rem; font-weight:600; margin-bottom:16px; word-break:break-word;">Tamu Undangan</div>
             <button id="btnOpen" class="btn-gold">
@@ -242,7 +276,7 @@
         <div class="sec-hero-wrapper">
             <section class="section-card sec-hero fade-up">
                 <p style="color:#fef3c7; font-size:0.9rem; letter-spacing:1.5px;">The Wedding of</p>
-                <h1 class="font-title">Hanif & Asri</h1>
+                <h1 class="font-title gold-foil-text">Hanif & Asri</h1>
                 <p style="color:#fef3c7; font-weight:600; margin-top:8px; font-size:0.95rem;">Senin, 21 Desember 2026</p>
                 <div class="scroll-down-hint">
                     <i class="fas fa-chevron-down"></i> Geser ke bawah
@@ -253,28 +287,28 @@
         <!-- MEMPELAI (KARTU 2) -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.3rem;">Mempelai</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.3rem;">Mempelai</h2>
             </div>
             <p style="font-size:0.8rem; color:#e7d8c9; font-style:italic; margin-bottom:16px;">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             <div style="display:flex; flex-direction:column; gap:12px;">
                 <div class="couple-card-glass">
                     <div class="couple-avatar-glass"><i class="fas fa-user-tie"></i></div>
-                    <h3 style="color:#fef3c7; font-size:1.05rem;">Hanif Abubakar</h3>
+                    <h3 class="font-title gold-foil-text" style="font-size:1.05rem;">Hanif Abubakar</h3>
                     <p style="font-size:0.78rem; color:#e7d8c9; margin-top:3px;">Putra dari Bpk. Muji Raharjo & Ibu Arminah</p>
                 </div>
-                <div class="font-title" style="font-size:1.4rem; color:#fef3c7;">&</div>
+                <div class="font-title gold-foil-text" style="font-size:1.4rem;">&</div>
                 <div class="couple-card-glass">
                     <div class="couple-avatar-glass"><i class="fas fa-user-nurse"></i></div>
-                    <h3 style="color:#fef3c7; font-size:1.05rem;">Asriwati</h3>
+                    <h3 class="font-title gold-foil-text" style="font-size:1.05rem;">Asriwati</h3>
                     <p style="font-size:0.78rem; color:#e7d8c9; margin-top:3px;">Putri dari Bpk. Karsono & Ibu Suwinah</p>
                 </div>
             </div>
         </section>
 
-        <!-- AYAT (KARTU 3) -->
+        <!-- KUTIPAN AYAT (KARTU 3 / POIN 4: LATAR KLASIK SAKRAL) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Kutipan Ayat</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Kutipan Ayat</h2>
             </div>
             <div class="ayat-box">
                 <div class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
@@ -283,90 +317,101 @@
             </div>
         </section>
 
-        <!-- LOVE STORY (KARTU 4) -->
+        <!-- OUR LOVE STORY (KARTU 4 / POIN 5: TIMELINE VERTIKAL) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Our Love Story</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Our Love Story</h2>
             </div>
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:14px; font-style:italic;">Perjalanan cinta yang membawa kami ke hari bahagia ini</p>
             
-            <div class="story-stack">
-                <div class="story-card-item fade-up">
-                    <div class="story-card-header">
-                        <div class="story-card-title">Pertama Bertemu</div>
-                        <span class="story-year">2022</span>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">Pertama Bertemu</div>
+                            <span class="timeline-year">2022</span>
+                        </div>
+                        <div class="timeline-desc">Semua berawal dari pertemuan sederhana yang tak disangka akan menjadi awal dari segalanya.</div>
                     </div>
-                    <div class="story-card-desc">Semua berawal dari pertemuan sederhana yang tak disangka akan menjadi awal dari segalanya.</div>
                 </div>
-                <div class="story-card-item fade-up">
-                    <div class="story-card-header">
-                        <div class="story-card-title">Mulai Menjalin Hubungan</div>
-                        <span class="story-year">2022</span>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">Mulai Menjalin Hubungan</div>
+                            <span class="timeline-year">2022</span>
+                        </div>
+                        <div class="timeline-desc">Dengan penuh keyakinan, kami memutuskan untuk saling mengenal lebih dalam.</div>
                     </div>
-                    <div class="story-card-desc">Dengan penuh keyakinan, kami memutuskan untuk saling mengenal lebih dalam.</div>
                 </div>
-                <div class="story-card-item fade-up">
-                    <div class="story-card-header">
-                        <div class="story-card-title">Lamaran</div>
-                        <span class="story-year">2025</span>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">Lamaran</div>
+                            <span class="timeline-year">2025</span>
+                        </div>
+                        <div class="timeline-desc">Di hadapan keluarga, kami mengikat janji untuk menempuh hidup bersama.</div>
                     </div>
-                    <div class="story-card-desc">Di hadapan keluarga, kami mengikat janji untuk menempuh hidup bersama.</div>
                 </div>
-                <div class="story-card-item fade-up">
-                    <div class="story-card-header">
-                        <div class="story-card-title">Hari Pernikahan</div>
-                        <span class="story-year">21 Des 2026</span>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title">Hari Pernikahan</div>
+                            <span class="timeline-year">21 Des 2026</span>
+                        </div>
+                        <div class="timeline-desc">Insyaallah kami akan mengucapkan janji suci di hadapan Allah SWT dan keluarga.</div>
                     </div>
-                    <div class="story-card-desc">Insyaallah kami akan mengucapkan janji suci di hadapan Allah SWT dan keluarga.</div>
                 </div>
             </div>
         </section>
 
-        <!-- COUNTDOWN (KARTU 5) -->
+        <!-- COUNTDOWN (KARTU 5 / POIN 6: ANIMASI DENYUT HIDUP) -->
         <section class="section-card fade-up" style="text-align:center; background:rgba(43,29,12,0.45); border:1px solid #d97706;">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="font-size:1.3rem;">Menuju Hari Bahagia</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.3rem;">Menuju Hari Bahagia</h2>
             </div>
             <div class="countdown-grid">
                 <div class="time-box"><span id="days">00</span><p>Hari</p></div>
                 <div class="time-box"><span id="hours">00</span><p>Jam</p></div>
                 <div class="time-box"><span id="minutes">00</span><p>Menit</p></div>
-                <div class="time-box"><span id="seconds">00</span><p>Detik</p></div>
+                <div class="time-box pulse-live"><span id="seconds">00</span><p>Detik</p></div>
             </div>
             <button class="btn-calendar" onclick="addToCalendar()">
                 <i class="far fa-calendar-plus"></i> Simpan ke Kalender
             </button>
         </section>
 
-        <!-- GALERI -->
+        <!-- GALERI (POIN 7: TATA LETAK VARIATIF) -->
         <section class="section-card fade-up">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Galeri</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Galeri</h2>
             </div>
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:10px;">Momen indah yang kami abadikan</p>
-            <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox(this)"><img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto 1"></div>
+            <div class="gallery-grid-custom">
+                <div class="gallery-item gallery-item-featured" onclick="openLightbox(this)"><img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Utama"></div>
                 <div class="gallery-item" onclick="openLightbox(this)"><img src="https://lh3.googleusercontent.com/d/1xqEx9mO9Txn5OdfCSsGxI0le5pdS54Tw" alt="Foto 2"></div>
                 <div class="gallery-item" onclick="openLightbox(this)"><img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto 3"></div>
-                <div class="gallery-item" onclick="openLightbox(this)"><img src="https://lh3.googleusercontent.com/d/1xqEx9mO9Txn5OdfCSsGxI0le5pdS54Tw" alt="Foto 4"></div>
             </div>
         </section>
 
         <!-- ACARA -->
         <section class="section-card fade-up" style="text-align:center; background:rgba(19,62,50,0.45);">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="font-size:1.4rem;">Rangkaian Acara</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">Rangkaian Acara</h2>
             </div>
             <div class="event-card">
                 <i class="fas fa-ring" style="font-size:1.4rem; color:#d97706; margin-bottom:4px;"></i>
-                <h3 style="color:#fef3c7; font-size:1rem;">Akad Nikah</h3>
+                <h3 class="font-title gold-foil-text" style="font-size:1rem;">Akad Nikah</h3>
                 <p style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Senin, 21 Desember 2026</p>
                 <p style="font-size:0.8rem;">08.00 WIB - Selesai</p>
                 <p style="font-size:0.78rem; color:#e7d8c9;">(Tempat akan segera diinformasikan)</p>
             </div>
             <div class="event-card">
                 <i class="fas fa-glass-cheers" style="font-size:1.4rem; color:#d97706; margin-bottom:4px;"></i>
-                <h3 style="color:#fef3c7; font-size:1rem;">Resepsi</h3>
+                <h3 class="font-title gold-foil-text" style="font-size:1rem;">Resepsi</h3>
                 <p style="font-size:0.85rem; color:#fef3c7; font-weight:600;">Minggu, 20 Desember 2026</p>
                 <p style="font-size:0.8rem;">10.00 WIB - Selesai</p>
                 <p style="font-size:0.78rem; color:#e7d8c9;">(Tempat akan segera diinformasikan)</p>
@@ -380,7 +425,7 @@
         <!-- AMPLOP -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.4rem;">Amplop Digital</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">Amplop Digital</h2>
             </div>
             <div class="bank-card">
                 <div style="font-weight:700; color:#d97706; letter-spacing:1.5px; font-size:0.9rem;">BANK BCA</div>
@@ -392,10 +437,10 @@
             </div>
         </section>
 
-        <!-- RSVP -->
+        <!-- RSVP & UCAPAN (POIN 10: STIKER REAKSI & FILTER) -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.4rem;">RSVP & Ucapan</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.4rem;">RSVP & Ucapan</h2>
             </div>
             <form id="rsvpForm" class="rsvp-form">
                 <div class="form-group">
@@ -411,6 +456,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label>Pilih Reaksi / Stiker</label>
+                    <div class="reaction-picker">
+                        <div class="reaction-option" onclick="selectReaction(this, '💐')">💐 Turut Bahagia</div>
+                        <div class="reaction-option" onclick="selectReaction(this, '💍')">💍 Sakinah</div>
+                        <div class="reaction-option" onclick="selectReaction(this, '✨')">✨ Selamat</div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label>Ucapan / Doa</label>
                     <textarea id="inputUcapan" rows="3" required></textarea>
                 </div>
@@ -419,16 +472,23 @@
                 </button>
             </form>
             <div id="status" style="margin-top:8px; color:#fef3c7; font-weight:600; font-size:0.9rem;"></div>
+            
             <div style="margin-top:18px;">
-                <h3 style="text-align:left; color:#fef3c7; margin-bottom:8px; font-size:0.95rem;">Daftar Ucapan</h3>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <h3 style="color:#fef3c7; font-size:0.95rem;">Daftar Ucapan</h3>
+                    <select id="filterUcapan" onchange="muatUcapan()" style="background:rgba(0,0,0,0.5); color:#fff; border:1px solid #d97706; border-radius:6px; padding:3px 6px; font-size:0.75rem;">
+                        <option value="all">Semua</option>
+                        <option value="Hadir">Hadir Saja</option>
+                    </select>
+                </div>
                 <div id="daftarUcapan" style="max-height:220px; overflow-y:auto;">Belum ada ucapan.</div>
             </div>
         </section>
 
-        <!-- BAGIKAN -->
+        <!-- BAGIKAN & PEMBUAT NAMA TAMU OTOMATIS (POIN 11) -->
         <section class="section-card fade-up" style="text-align:center;">
             <div class="section-title-wrapper">
-                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Bagikan Undangan</h2>
+                <h2 class="font-title gold-foil-text" style="font-size:1.25rem;">Bagikan Undangan</h2>
             </div>
             <p style="font-size:0.8rem; color:#e7d8c9; margin-bottom:4px;">Sebarkan kebahagiaan ini</p>
             <div class="share-buttons">
@@ -439,12 +499,22 @@
                     <i class="fas fa-link"></i> Salin Link
                 </button>
             </div>
+
+            <!-- GENERATOR LINK UNDANGAN UNTUK NAMA TAMU -->
+            <div class="guest-generator-box">
+                <p style="font-size:0.78rem; color:#fef3c7; margin-bottom:6px; font-weight:600;">Buat Link Khusus Tamu</p>
+                <div style="display:flex; gap:6px;">
+                    <input type="text" id="customGuestName" placeholder="Nama Tamu (Cth: Budi)" style="flex:1; padding:7px; border-radius:6px; border:1px solid #d97706; background:rgba(0,0,0,0.4); color:#fff; font-size:0.85rem;">
+                    <button onclick="generateGuestLink()" class="btn-gold" style="padding:7px 12px; font-size:0.8rem;">Buat</button>
+                </div>
+                <div id="generatedResult" style="margin-top:6px; font-size:0.75rem; color:#e7d8c9; word-break:break-all;"></div>
+            </div>
         </section>
 
         <!-- FOOTER -->
         <footer class="section-card footer fade-up">
             <p>Terima Kasih Atas Doa & Restu Anda</p>
-            <p class="font-title" style="color:#d97706; margin-top:4px; font-size:1rem;">Hanif & Asri</p>
+            <p class="font-title gold-foil-text" style="margin-top:4px; font-size:1rem;">Hanif & Asri</p>
         </footer>
     </div>
 
@@ -455,6 +525,14 @@
     </div>
 
     <script>
+        let selectedReactionIcon = '💐';
+
+        function selectReaction(element, icon) {
+            document.querySelectorAll('.reaction-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedReactionIcon = icon;
+        }
+
         // Membuat Partikel Cahaya Latar Belakang secara Otomatis
         function createParticles() {
             const container = document.getElementById('particleContainer');
@@ -501,7 +579,6 @@
         let isPlaying = false;
 
         function playAudio() {
-            // Mengatur musik agar mulai dari detik ke-11
             if (bgMusic.currentTime < 11) {
                 bgMusic.currentTime = 11;
             }
@@ -582,6 +659,17 @@
             });
         }
 
+        function generateGuestLink() {
+            const name = document.getElementById('customGuestName').value.trim();
+            if (!name) {
+                alert('Masukkan nama tamu terlebih dahulu.');
+                return;
+            }
+            const baseUrl = window.location.origin + window.location.pathname;
+            const link = baseUrl + '?to=' + encodeURIComponent(name);
+            document.getElementById('generatedResult').innerHTML = 'Link: <a href="' + link + '" target="_blank" style="color:#fef3c7;">' + link + '</a>';
+        }
+
         function openLightbox(el) {
             document.getElementById('lightbox-img').src = el.querySelector('img').src;
             document.getElementById('lightbox').classList.add('active');
@@ -598,17 +686,25 @@
 
         function muatUcapan() {
             const list = JSON.parse(localStorage.getItem('ucapanHanifAsri') || '[]');
+            const filter = document.getElementById('filterUcapan').value;
             const container = document.getElementById('daftarUcapan');
-            if (!list || list.length === 0) {
+            
+            let filteredList = list;
+            if (filter === 'Hadir') {
+                filteredList = list.filter(item => item.kehadiran === 'Hadir');
+            }
+
+            if (!filteredList || filteredList.length === 0) {
                 container.innerHTML = '<p style="color:#aaa;font-size:0.85rem;">Belum ada ucapan.</p>';
                 return;
             }
             let html = '';
-            list.forEach(function(item) {
+            filteredList.forEach(function(item) {
                 const badge = item.kehadiran === 'Hadir' ? 'badge-hadir' : 'badge-tidak';
+                const reaction = item.reaction ? '<span style="margin-left:6px;">' + item.reaction + '</span>' : '';
                 html += '<div class="ucapan-item">' +
                     '<div style="display:flex;justify-content:space-between;margin-bottom:3px;">' +
-                    '<span style="font-weight:600;color:#fef3c7;font-size:0.88rem;">' + escapeHTML(item.nama) + '</span>' +
+                    '<span style="font-weight:600;color:#fef3c7;font-size:0.88rem;">' + escapeHTML(item.nama) + reaction + '</span>' +
                     '<span class="' + badge + '">' + escapeHTML(item.kehadiran) + '</span>' +
                     '</div>' +
                     '<p style="font-size:0.8rem;color:#e0e0e0;">' + escapeHTML(item.ucapan) + '</p>' +
@@ -632,7 +728,8 @@
             const formData = {
                 nama: document.getElementById('inputNama').value.trim(),
                 kehadiran: document.getElementById('inputKehadiran').value,
-                ucapan: document.getElementById('inputUcapan').value.trim()
+                ucapan: document.getElementById('inputUcapan').value.trim(),
+                reaction: selectedReactionIcon
             };
 
             if (!formData.nama || !formData.kehadiran || !formData.ucapan) {
