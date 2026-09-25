@@ -22,10 +22,32 @@
             background-attachment: fixed;
             line-height: 1.55; 
             color: #fff; 
+            position: relative;
         }
 
         .font-title { font-family: 'Cinzel Decorative', serif; }
         .hide { display: none !important; }
+
+        /* EFEK PARTIKEL / CAHAYA LEMBUT DI BACKGROUND */
+        .particle-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            background: #fef3c7;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatParticle 8s infinite linear;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
 
         /* TRANSISI KARTU */
         .fade-up { 
@@ -56,9 +78,43 @@
         .btn-gold { background: linear-gradient(135deg, #d97706, #78350f); color: #fff; font-weight: 700; border: 1px solid #fef3c7; padding: 12px 26px; font-size: 0.95rem; border-radius: 30px; cursor: pointer; display: inline-block; transition: transform 0.2s ease, opacity 0.2s ease; }
         .btn-gold:active { transform: scale(0.96); }
 
-        /* KONTINUE & KARTU UTAMA */
+        /* KONTINUE & KARTU UTAMA DENGAN ORNAMEN SUDUT KLASIK */
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
-        .section-card { margin: 40px 14px; border-radius: 20px; padding: 30px 18px; background: rgba(18,18,18,0.80); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 0 1px rgba(217,119,6,0.3); color: #fff; }
+        .section-card { 
+            margin: 40px 14px; 
+            border-radius: 20px; 
+            padding: 30px 18px; 
+            background: rgba(18,18,18,0.82); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 0 1px rgba(217,119,6,0.3); 
+            color: #fff; 
+            position: relative;
+        }
+        /* Ornamen Sudut Klasik Emas */
+        .section-card::before, .section-card::after {
+            content: '❧';
+            position: absolute;
+            color: #d97706;
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+        .section-card::before { top: 10px; left: 12px; transform: rotate(-90deg); }
+        .section-card::after { top: 10px; right: 12px; }
+
+        /* Hiasan Bunga/Daun Emas di Sekitar Judul */
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .section-ornament {
+            color: #d97706;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            margin-bottom: 2px;
+            display: block;
+            opacity: 0.85;
+        }
 
         /* HERO (KARTU 1 - POSISI DI BAWAH) */
         .sec-hero-wrapper {
@@ -76,6 +132,7 @@
             margin: 0 14px !important;
             text-shadow: 0 2px 10px rgba(0,0,0,0.9);
         }
+        .sec-hero.section-card::before, .sec-hero.section-card::after { display: none; }
         .sec-hero h1 { color: #f59e0b; font-size: 2.1rem; margin: 6px 0; letter-spacing: 1px; }
         
         .scroll-down-hint {
@@ -114,7 +171,7 @@
         .badge-tidak { background: #ef4444; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
         .footer { text-align: center; font-size: 0.8rem; border: 1px solid #d97706; margin-bottom: 40px; }
         
-        /* LOVE STORY - STYLE KARTU BERDERET DENGAN EFEK ANIMASI */
+        /* LOVE STORY - STYLE KARTU STACK DENGAN EFEK ANIMASI */
         .story-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
         .story-card-item { 
             background: rgba(255,255,255,0.06); 
@@ -158,6 +215,9 @@
     </style>
 </head>
 <body>
+
+    <!-- EFEK PARTIKEL / CAHAYA LATAR BELAKANG -->
+    <div class="particle-bg" id="particleContainer"></div>
 
     <!-- AUDIO BACKGROUND -->
     <audio id="bgMusic" preload="auto" loop>
@@ -209,7 +269,10 @@
 
         <!-- MEMPELAI (KARTU 2) -->
         <section class="section-card fade-up" style="text-align:center;">
-            <h2 class="font-title" style="color:#fef3c7; margin-bottom:6px; font-size:1.3rem;">Mempelai</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.3rem;">Mempelai</h2>
+            </div>
             <p style="font-size:0.8rem; color:#e7d8c9; font-style:italic; margin-bottom:16px;">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
             <div style="display:flex; flex-direction:column; gap:12px;">
                 <div class="couple-card-glass">
@@ -228,7 +291,10 @@
 
         <!-- AYAT (KARTU 3) -->
         <section class="section-card fade-up">
-            <h2 class="font-title" style="color:#fef3c7; text-align:center; margin-bottom:12px; font-size:1.25rem;">Kutipan Ayat</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Kutipan Ayat</h2>
+            </div>
             <div class="ayat-box">
                 <div class="ayat-arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</div>
                 <div class="ayat-latin">“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.”</div>
@@ -238,7 +304,10 @@
 
         <!-- LOVE STORY (KARTU 4 - GAYA KARTU STACK DENGAN EFEK ANIMASI) -->
         <section class="section-card fade-up">
-            <h2 class="font-title" style="color:#fef3c7; text-align:center; margin-bottom:5px; font-size:1.25rem;">Our Love Story</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Our Love Story</h2>
+            </div>
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:14px; font-style:italic;">Perjalanan cinta yang membawa kami ke hari bahagia ini</p>
             
             <div class="story-stack">
@@ -275,7 +344,10 @@
 
         <!-- COUNTDOWN (KARTU 5) -->
         <section class="section-card fade-up" style="text-align:center; background:rgba(43,29,12,0.45); border:1px solid #d97706;">
-            <h2 class="font-title" style="font-size:1.3rem; margin-bottom:10px;">Menuju Hari Bahagia</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="font-size:1.3rem;">Menuju Hari Bahagia</h2>
+            </div>
             <div class="countdown-grid">
                 <div class="time-box"><span id="days">00</span><p>Hari</p></div>
                 <div class="time-box"><span id="hours">00</span><p>Jam</p></div>
@@ -289,7 +361,10 @@
 
         <!-- GALERI -->
         <section class="section-card fade-up">
-            <h2 class="font-title" style="color:#fef3c7; text-align:center; margin-bottom:5px; font-size:1.25rem;">Galeri</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Galeri</h2>
+            </div>
             <p style="text-align:center; font-size:0.78rem; color:#e7d8c9; margin-bottom:10px;">Momen indah yang kami abadikan</p>
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox(this)"><img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto 1"></div>
@@ -301,7 +376,10 @@
 
         <!-- ACARA (RESEPSI 20 DESEMBER 2026) -->
         <section class="section-card fade-up" style="text-align:center; background:rgba(19,62,50,0.45);">
-            <h2 class="font-title" style="font-size:1.4rem; margin-bottom:12px;">Rangkaian Acara</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="font-size:1.4rem;">Rangkaian Acara</h2>
+            </div>
             <div class="event-card">
                 <i class="fas fa-ring" style="font-size:1.4rem; color:#d97706; margin-bottom:4px;"></i>
                 <h3 style="color:#fef3c7; font-size:1rem;">Akad Nikah</h3>
@@ -324,7 +402,10 @@
 
         <!-- AMPLOP -->
         <section class="section-card fade-up" style="text-align:center;">
-            <h2 class="font-title" style="color:#fef3c7; font-size:1.4rem; margin-bottom:12px;">Amplop Digital</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.4rem;">Amplop Digital</h2>
+            </div>
             <div class="bank-card">
                 <div style="font-weight:700; color:#d97706; letter-spacing:1.5px; font-size:0.9rem;">BANK BCA</div>
                 <div style="font-size:1.25rem; font-weight:bold; margin:8px 0 4px;">1234567890</div>
@@ -337,7 +418,10 @@
 
         <!-- RSVP -->
         <section class="section-card fade-up" style="text-align:center;">
-            <h2 class="font-title" style="color:#fef3c7; font-size:1.4rem; margin-bottom:12px;">RSVP & Ucapan</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.4rem;">RSVP & Ucapan</h2>
+            </div>
             <form id="rsvpForm" class="rsvp-form">
                 <div class="form-group">
                     <label>Nama Lengkap</label>
@@ -368,7 +452,10 @@
 
         <!-- BAGIKAN -->
         <section class="section-card fade-up" style="text-align:center;">
-            <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem; margin-bottom:5px;">Bagikan Undangan</h2>
+            <div class="section-title-wrapper">
+                <span class="section-ornament">✤ ✿ ✤</span>
+                <h2 class="font-title" style="color:#fef3c7; font-size:1.25rem;">Bagikan Undangan</h2>
+            </div>
             <p style="font-size:0.8rem; color:#e7d8c9; margin-bottom:4px;">Sebarkan kebahagiaan ini</p>
             <div class="share-buttons">
                 <button class="btn-share btn-whatsapp" onclick="shareWhatsApp()">
@@ -394,6 +481,23 @@
     </div>
 
     <script>
+        // Membuat Partikel Cahaya Latar Belakang secara Otomatis
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                p.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(p);
+            }
+        }
+
         function getNamaTamu() {
             const params = new URLSearchParams(window.location.search);
             const nama = params.get('to');
@@ -405,6 +509,7 @@
         }
 
         window.addEventListener('load', function() {
+            createParticles();
             getNamaTamu();
             setTimeout(function() {
                 document.getElementById('loading-screen').classList.add('hide');
@@ -422,6 +527,10 @@
         let isPlaying = false;
 
         function playAudio() {
+            // Mengatur musik agar mulai dari detik ke-11
+            if (bgMusic.currentTime < 11) {
+                bgMusic.currentTime = 11;
+            }
             bgMusic.play().then(function() {
                 isPlaying = true;
                 musicToggle.classList.add('playing');
