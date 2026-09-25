@@ -12,43 +12,28 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { width: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #0b0a09; line-height: 1.55; color: #fff; }
+        
+        /* ========================= BACKGROUND PATEN TERKUNCI MATI DI BODY ========================= */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #0b0a09; 
+            /* Menggunakan background fixed murni bawaan browser agar dijamin 100% tidak bisa terdorong */
+            background-image: linear-gradient(180deg, rgba(18,18,18,0.45) 0%, rgba(18,18,18,0.85) 100%), url('https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            line-height: 1.55; 
+            color: #fff; 
+        }
+
         .font-title { font-family: 'Cinzel Decorative', serif; }
         .hide { display: none !important; }
 
-        /* ========================= BACKGROUND PATEN (DIKUNCI STABIL) ========================= */
-        .bg-fixed-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            height: 100svh;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-        .bg-fixed-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
-        .bg-fixed-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(18,18,18,0.45) 0%, rgba(18,18,18,0.85) 100%);
-        }
-
-        /* ========================= TRANSISI & SCROLL ANIMATION (MUNCUL SATU PERSATU) ========================= */
+        /* ========================= TRANSISI & SCROLL ANIMATION ========================= */
         .fade-up { 
             opacity: 0; 
-            transform: translateY(60px); 
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); 
+            transform: translateY(50px); 
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
             will-change: opacity, transform;
         }
         .fade-up.active { 
@@ -75,25 +60,25 @@
 
         /* ========================= MAIN ========================= */
         .main-container { max-width: 480px; margin: 0 auto; position: relative; z-index: 2; }
-        .section-card { margin: 20px 12px; border-radius: 18px; padding: 26px 16px; background: rgba(18,18,18,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.35), 0 0 0 1px rgba(217,119,6,0.25); color: #fff; }
+        .section-card { margin: 20px 12px; border-radius: 18px; padding: 26px 16px; background: rgba(18,18,18,0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.35), 0 0 0 1px rgba(217,119,6,0.25); color: #fff; }
 
-        /* ========================= HERO (KARTU 1 DIBAWAH & PAS) ========================= */
+        /* ========================= HERO (KARTU 1) ========================= */
         .sec-hero-wrapper {
-            padding-top: 55vh; /* Memberi ruang kosong di atas agar wajah wanita terlihat bersih */
-            padding-bottom: 20px;
+            padding-top: 48vh; /* Jarak pas agar wajah di background terlihat di atas kartu */
+            padding-bottom: 10px;
         }
         .sec-hero { 
             border: 1.5px solid #d97706; 
             text-align: center; 
-            padding: 32px 16px; 
+            padding: 30px 16px; 
             width: 100%;
             margin: 0;
-            background: rgba(18,18,18,0.85);
+            background: rgba(18,18,18,0.88);
         }
         .sec-hero h1 { color: #d97706; font-size: 1.8rem; margin: 8px 0; }
         
         .scroll-down-hint {
-            margin-top: 20px;
+            margin-top: 18px;
             font-size: 0.75rem;
             color: #e7d8c9;
             letter-spacing: 1px;
@@ -215,16 +200,10 @@
         </div>
     </div>
 
-    <!-- BACKGROUND PATEN (DIKUNCI STABIL) -->
-    <div class="bg-fixed-container">
-        <img src="https://lh3.googleusercontent.com/d/11ca79yzLJ2RWJsr7h-tqiuA-AAjB0Bik" alt="Foto Bersama" class="bg-fixed-img">
-        <div class="bg-fixed-overlay"></div>
-    </div>
-
     <!-- KONTEN UTAMA -->
     <div id="mainContent" class="main-container hide">
 
-        <!-- HERO (KARTU 1 DIBAWAH & MENGALIR MULUS) -->
+        <!-- HERO (KARTU 1) -->
         <div class="sec-hero-wrapper">
             <section class="section-card sec-hero fade-up">
                 <p style="color:#fef3c7; font-size:0.85rem; letter-spacing:1px;">The Wedding of</p>
